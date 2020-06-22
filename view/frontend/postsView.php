@@ -20,12 +20,27 @@ ob_start(); ?>
             </div>
         </div>
         <?php } ?>
-    
-    </div>
 
-</div>
+        <div class="pagination_block">
+            
+            <?php if ($currentPage > 1) { ?> 
+                <a href="Index.php?page=<?= $currentPage - 1 ?>"><input type="button" value="< Page précédente" class="bttn"></a>
+                <a href="Index.php?page=1"><input type="button" value="1" class="bttn"></a>
+
+            <?php } ?>
+            <!-- PAGE ACTUELLE -->
+            <input type="button" value="<?= $currentPage?>" class="bttn current">
+            <!-- PAGE ACTUELLE -->
+            <?php if ($currentPage < $pages) { ?>
+                <a href="Index.php?page=<?= $pages ?>"><input type="button" value="<?= $pages ?>" class="bttn"></a>   
+                <a href="Index.php?page=<?= $currentPage + 1 ?>"><input type="button" value="Page suivante >" class="bttn"></a> 
+            <?php }   ?>
+
+        </div> <!-- PAGINATION_BLOCK END -->
+    
+    </div> <!-- BLOC_ARTICLES END -->
+
+</div> <!-- CONTAINER END !-->
 
 <?php $content = ob_get_clean(); 
 require('Template.php'); ?>
-
-

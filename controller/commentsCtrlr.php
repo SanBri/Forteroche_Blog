@@ -1,6 +1,5 @@
 <?php 
 
-
 class CommentCtrlr  {
 
     public function getComments($id) {
@@ -59,8 +58,4 @@ class CommentCtrlr  {
             header('Location: index.php?action=reportedComments');
     }
 
-
 }
-
-
-

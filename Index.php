@@ -7,8 +7,8 @@ require_once('controller/adminController.php');
 class Home { 
 
     public function redirection() {
-        $req = new Controller;
-        $commentReq = new commentCtrlr;
+        $req = new ViewCtrlr;
+        $commentReq = new CommentCtrlr;
         $adminReq = new AdminCtrlr;
         if(isset($_GET['action'])) {
             $action = $_GET['action'];

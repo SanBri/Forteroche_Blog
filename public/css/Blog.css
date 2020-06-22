@@ -38,6 +38,17 @@ h2 {
     text-align: center;
 }
 
+.pagination_block {
+    text-align: center;
+}
+
+.current /* REPORTED VIEW BUTTON */ {
+    cursor: default;
+    border: 1.5px solid black;
+    background-color: rgba(60, 139, 60, 1);
+}
+
+
 /* HEADER */
 
 .admin_connexion {
@@ -52,11 +63,6 @@ h2 {
 
 .add_comment {
     margin-bottom: 30px;
-}
-
-span.emptyForm {
-    display: none;
-    color: red;
 }
 
 .comment_info {

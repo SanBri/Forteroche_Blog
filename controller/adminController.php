@@ -23,7 +23,20 @@ class AdminCtrlr {
         session_start();
         if ( isset($_SESSION['admin']) ) {
             $req = new Article;
-            $posts = $req->getPosts();
+            if( isset($_GET['page']) && $_GET['page'] > 1 ){
+                $currentPage = (int)$_GET['page'];
+            } else {
+                $currentPage = 1;
+            }        
+            $perPage = 2;
+            $offset = $perPage * ($currentPage - 1);
+            if ( isset($_GET['page']) && $_GET['page'] > $pages) {
+                $currentPage = $pages;
+            }
+            $req = new Article;
+            $posts = $req->getPosts($perPage, $offset);
+            $nbPosts = $req->countPost();
+            $pages = ceil($nbPosts / $perPage); //ceil() arrondit au supérieur
             $reqCom = new Comment;
             $nbReportedComments = $reqCom->countReportedComments();
             require($url);
@@ -66,8 +79,6 @@ class AdminCtrlr {
             header('Location: Index.php');
         }
     }
-
-
 
 }
 

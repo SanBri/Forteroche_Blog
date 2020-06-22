@@ -8,10 +8,16 @@ class Article {
         return $dbArticle;
     }
 
-    public function getPosts() {
+    public function getPosts($perPage, $offset) {
         $dbPosts = $this->dbConnect();
-        $res = $dbPosts->query("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr FROM articles ORDER BY id DESC");
+        $res = $dbPosts->query("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr FROM articles ORDER BY id DESC LIMIT $perPage OFFSET $offset");
         return $res;
+    }
+
+    public function countPost() {
+        $dbPosts = $this->dbConnect();
+        $nbPosts = $dbPosts->query("SELECT COUNT(*) FROM articles")->fetch(PDO::FETCH_NUM)[0];
+        return $nbPosts;
     }
 
     public function getPost($postId) {

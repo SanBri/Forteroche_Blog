@@ -46,7 +46,6 @@ ob_start(); ?>
                     <p><input type="text" placeholder="Nom d'utilisateur" name="userName" maxlength=20 size=15/></p>
                     <p><textarea placeholder="Veuillez rédiger votre commentaire" name="comment" rows=10 cols=40></textarea></p>
                     <input type="hidden" name="postID" value="<?= $_GET['id'] ?>">
-                    <span class="emptyForm"><p>Veuillez renseigner tous les champs !</p></span>
                     <input type="submit" value="Envoyer" id="redirCom">
                 </form>
             </div> 

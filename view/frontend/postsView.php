@@ -4,6 +4,10 @@ ob_start(); ?>
 
 <div class="container">
 
+    <div class="title">
+        <h1>Mon Blog</h1>
+    </div>
+
     <div class="bloc_articles">
     
         <?php while ($post = $posts->fetch() ) { ?>

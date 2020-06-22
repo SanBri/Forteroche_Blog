@@ -1,7 +1,9 @@
 <?php
 
-require_once('model/Article.php');
-require_once('model/Comment.php');
+namespace Controller;
+
+use \Model\Article;
+use \Model\Comment;
 
 class ViewCtrlr {
 

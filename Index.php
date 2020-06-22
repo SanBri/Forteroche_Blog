@@ -1,11 +1,13 @@
 <?php 
 
-require_once('controller/viewsCtrlr.php');
-require_once('controller/commentsCtrlr.php');
-require_once('controller/adminController.php');
+require('vendor/autoload.php');
+
+use \Controller\ViewCtrlr;
+use \Controller\CommentCtrlr;
+use \Controller\AdminCtrlr;
+
 
 class Home { 
-
     public function redirection() {
         $req = new ViewCtrlr;
         $commentReq = new CommentCtrlr;
@@ -50,6 +52,8 @@ class Home {
                 $comments = $commentReq->showReportedComments();
             } else if ($action === 'legitimateComment') {
                 $commentReq->legitimateComment($_GET['comId']);
+            } else if ($action === 'register') {
+                $adminReq->register();
             } else {
                 $req->listPosts();
             }

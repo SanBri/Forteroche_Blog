@@ -1,11 +1,13 @@
 <?php 
 
+namespace Model;
+
 class Article {
 
     protected function dbConnect() {
-        $dbArticle = new PDO('mysql:host=localhost;port=3308;dbname=blog','root', '', array(PDO::ATTR_ERRMODE => 
-        PDO::ERRMODE_EXCEPTION));
-        return $dbArticle;
+        $dbPosts = new \PDO('mysql:host=localhost;port=3308;dbname=blog','root', '', array(\PDO::ATTR_ERRMODE => 
+        \PDO::ERRMODE_EXCEPTION));
+        return $dbPosts;
     }
 
     public function getPosts($perPage, $offset) {
@@ -16,7 +18,7 @@ class Article {
 
     public function countPost() {
         $dbPosts = $this->dbConnect();
-        $nbPosts = $dbPosts->query("SELECT COUNT(*) FROM articles")->fetch(PDO::FETCH_NUM)[0];
+        $nbPosts = $dbPosts->query("SELECT COUNT(*) FROM articles")->fetch(\PDO::FETCH_NUM)[0];
         return $nbPosts;
     }
 

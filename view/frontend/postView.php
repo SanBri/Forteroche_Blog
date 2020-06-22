@@ -50,10 +50,9 @@ ob_start(); ?>
                 </form>
             </div> 
 
-            <?php 
-                while ($comment = $comments->fetch() ) { ?>
+            <?php while ($comment = $comments->fetch() ) { ?>
                 <div class="each_comment" >
-                    
+                
                     <div class="comment_info">
                             <p><?= '<strong>' . htmlspecialchars($comment['author']) .  '</strong> |  <em>' . $comment['creation_date_fr'] . '</em>'; ?></p>
                     </div>
@@ -74,7 +73,7 @@ ob_start(); ?>
                             } ?>
                         </div>
                     </div>
-                    
+                
                 </div>
             <?php } ?>
 

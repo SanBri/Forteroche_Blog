@@ -1,5 +1,10 @@
 <?php 
 
+namespace Controller;
+
+use \Model\Article;
+use \Model\Comment;
+
 class CommentCtrlr  {
 
     public function getComments($id) {

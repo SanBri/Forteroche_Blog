@@ -2,16 +2,18 @@
 $title = "Nouvel Article";
 ob_start(); ?>
 
-  <script>
-    tinymce.init({
-      selector: 'textarea',
-      plugins: ' advlist link image lists',
-      toolbar: 'undo redo | styleselect | bold italic underline | link image | alignleft aligncenter alignright alignjustify  | outdent indent',
-      toolbar_mode: 'floating',
-    });
-  </script>
-</body>
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: ' advlist link image lists',
+    toolbar: 'undo redo | styleselect | bold italic underline | link image | alignleft aligncenter alignright alignjustify  | outdent indent',
+    toolbar_mode: 'floating',
+  });
+</script>
 
+<div class="title">
+  <h1>Ajouter un Article</h1>
+</div>
 
 <div class="createPost">
     <form action='Index.php?action=newPost' method="post">

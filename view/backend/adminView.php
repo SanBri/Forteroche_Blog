@@ -12,10 +12,11 @@ ob_start(); ?>
         <div class="reportedComments_block">
             <?php if ($nbReportedComments > 1) { ?>
                 <p><?= $nbReportedComments ?> commentaires ont été signalés
+                <a href="index.php?action=reportedComments"><input type="button" class="bttn reported" value="Voir les commentaires"></p></a>
             <?php } else { ?> 
                 <p>1 commentaire a été signalé
+                <a href="index.php?action=reportedComments"><input type="button" class="bttn reported" value="Voir le commentaire"></p></a>
             <?php } ?>
-                <a href="index.php?action=reportedComments"><input type="button" class="bttn reported" value="Voir les commentaires"></p></a>
         </div> <!-- reportedComments_block END -->
     <?php } ?> <!-- IF END -->
 

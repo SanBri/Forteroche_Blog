@@ -69,6 +69,32 @@ h2 {
     font-size: 0.8em;
 }
 
+.comment_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.comment_icn i {
+    color: rgba(245, 16, 16, 0.5);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding-top: 16px;
+    padding-left: 5px;
+}
+
+.comment_icn i:hover {
+    color: rgb(245, 16, 16);
+}
+
+#legitimateComment /* USER ICON */ {
+    color: rgba(99, 214, 99, 0.5);
+}
+
+#legitimateComment:hover /* USER ICON */ {
+    color: rgb(99, 214, 99);
+}
+
 /* ADMIN SECTION */
 
 .connexion_block {
@@ -115,20 +141,6 @@ h2 {
     background-color: rgba(175, 19, 19, 1);
 }
 
-.comment_options i {
-    padding: 10px;
-    cursor: pointer;
-}
-
-.deleteCommentIcn i {
-    color: rgb(236, 25, 25);;
-}
-
-.legitimateComment i /* ADMIN ICON */ {
-    color: rgb(99, 214, 99);;
-}
-
-
 .addPost_block p {
     color:  rgb(99, 214, 99);
 }
@@ -167,32 +179,36 @@ h2 {
     color: rgb(131, 66, 192);
 }
 
-.comment_content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.comment_icn i {
-    color: rgba(245, 16, 16, 0.5);
-    font-size: 1.2em;
-    cursor: pointer;
-    padding-top: 16px;
-    padding-left: 5px;
-}
-
-.comment_icn i:hover {
-    color: rgb(245, 16, 16);
-}
-
-#legitimateComment /* USER ICON */ {
-    color: rgba(99, 214, 99, 0.5);
-}
-
-#legitimateComment:hover /* USER ICON */ {
-    color: rgb(99, 214, 99);
-}
-
 .icnInList i {
     padding-top: 0;
+}
+
+/* ADMIN REPORTED COMMENTS VIEW */
+
+.comment_options i {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.deleteCommentIcn i {
+    color: rgb(236, 25, 25);;
+}
+
+.legitimateComment i /* ADMIN ICON */ {
+    color: rgb(99, 214, 99);;
+}
+
+/* ADMIN CREATE NEW POST */
+
+.createPost {
+    border: 1px solid rgb(60, 139, 60);
+    width: 90%;
+    text-align: center;
+    padding: 20px;
+    margin: 30px auto;
+}
+
+.createPost textarea {
+    width: 50%;
+    height: 500px;
 }

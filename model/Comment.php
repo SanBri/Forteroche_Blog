@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+namespace Model;
 
 class Comment extends Article {
 
@@ -39,11 +41,11 @@ class Comment extends Article {
     public function removeReportedComment($commentId) {
         $dbComments = parent::dbConnect();
         $req = $dbComments->prepare('UPDATE comments SET reported=reported-1 WHERE id = ? ');
-        $req->execute(array($commentId)); 
+        $req->execute(array($commentId));
         $res = $dbComments->prepare('UPDATE comments SET reported = 0 WHERE reported < 0');
         $res->execute(array($commentId));
     }
-    
+
     public function resetReported($commentId) {
         $dbComments = parent::dbConnect();
         $req = $dbComments->prepare('UPDATE comments SET reported = 0 WHERE id = ?');

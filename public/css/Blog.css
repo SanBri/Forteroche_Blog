@@ -1,13 +1,54 @@
+/* GENERAL */
+
 .article {
-    border: 1px solid black;
+    border: 1px solid rgb(60, 139, 60);
     text-align: center;
-    margin: 10px;
-    position: relative;
+    width: 70%;
+    margin: 10px auto;
+    padding-bottom: 20px;
 }
 
 a {
     text-decoration: none;
 }
+
+h2 {
+    text-align: center;
+}
+
+.bttn {
+    height: 30px;
+    border: none;
+    text-align: center;
+    background-color: rgba(60, 139, 60, 0.681);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin: auto;
+    border-radius: 5px;
+    transition-property: background-color; 
+    transition-duration: 0.5s; 
+}
+
+.bttn:hover {
+    background-color: rgba(60, 139, 60, 1);
+}
+
+.buttons_list {
+    text-align: center;
+}
+
+/* HEADER */
+
+.admin_connexion {
+    margin-left: 90%;
+}
+   
+.admin_connected {
+    margin-left: 80%;
+}
+
+/* POST VIEW */
 
 .add_comment {
     margin-bottom: 30px;
@@ -20,4 +61,132 @@ span.emptyForm {
 
 .comment_info {
     font-size: 0.8em;
+}
+
+/* ADMIN SECTION */
+
+.connexion_block {
+    margin: auto;
+    width: 50%;
+    height: 140px;
+    text-align: center;
+    border: solid 1px rgb(60, 139, 60)
+}
+
+.title {
+    text-align: center;;
+}
+
+.addPost_block {
+    width: 150px;
+    height: auto;
+    text-align: center;
+    border-radius: 5px;
+    margin: auto;
+    cursor: pointer;
+    border: solid 1px rgb(99, 214, 99);
+}
+
+.reportedComments_block {
+    width: 280px;
+    height: 50px;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.reportedComments_block p {
+    color: rgba(175, 19, 19, 1);
+    font-weight: bold;
+}
+
+.reported /* REPORTED VIEW BUTTON */ {
+    background-color: rgba(175, 19, 19, 0.681);
+    transition-property: background-color; 
+    transition-duration: 0.5s; 
+}
+
+.reported:hover {
+    background-color: rgba(175, 19, 19, 1);
+}
+
+.comment_options i {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.deleteCommentIcn i {
+    color: rgb(236, 25, 25);;
+}
+
+.legitimateComment i /* ADMIN ICON */ {
+    color: rgb(99, 214, 99);;
+}
+
+
+.addPost_block p {
+    color:  rgb(99, 214, 99);
+}
+
+.addPost_block i {
+    font-size: 5em;
+    padding-top: 20px;
+    padding-bottom: 0;
+    color: rgb(99, 214, 99);
+}
+
+.options_icn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.5em;
+}
+
+.post_options i {
+    color: grey;
+    transition-property: color; 
+    transition-duration: 0.5s; 
+    padding: 10px;
+    cursor: pointer;
+}
+
+.editPost i:hover {
+    color: rgb(39, 39, 211);
+}
+
+.deletePost i:hover {
+    color: rgb(214, 99, 99);
+}
+
+.deleteComment i:hover {
+    color: rgb(131, 66, 192);
+}
+
+.comment_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.comment_icn i {
+    color: rgba(245, 16, 16, 0.5);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding-top: 16px;
+    padding-left: 5px;
+}
+
+.comment_icn i:hover {
+    color: rgb(245, 16, 16);
+}
+
+#legitimateComment /* USER ICON */ {
+    color: rgba(99, 214, 99, 0.5);
+}
+
+#legitimateComment:hover /* USER ICON */ {
+    color: rgb(99, 214, 99);
+}
+
+.icnInList i {
+    padding-top: 0;
 }

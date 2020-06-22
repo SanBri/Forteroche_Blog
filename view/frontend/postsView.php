@@ -1,33 +1,22 @@
-<!DOCTYPE html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Mon Blog</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="public/css/Blog.css">
-</head>
-<body>
+<?php session_start(); 
+$title = "Blog";
+ob_start(); ?>
 
 <div class="container">
 
-    <div class="header">
-        <!-- < ? = // $header ?> -->
-    </div>
-
     <div class="bloc_articles">
     
-        <?php while ($data = $posts->fetch() ) { ?>
+        <?php while ($post = $posts->fetch() ) { ?>
         <div class="article">
             <div class="article_title">
-                <h2><?php echo $data['title'];?></h2>
+                <h2><?php echo $post['title'];?></h2>
             </div>
 
             <div class="article_content">
                 <div class="article_text">
-                    <p><?php echo $data['content'];?></p>
-                    <p><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire la suite</a></p>
-                </div>
+                    <p><?php echo $post['content'];?></p>
+                    <a href="index.php?action=post&amp;id=<?= $post['id'] ?>"><input type="button" value="Lire la suite" class="bttn"></a>
+                </div> 
             </div>
         </div>
         <?php } ?>
@@ -36,6 +25,7 @@
 
 </div>
 
+<?php $content = ob_get_clean(); 
+require('Template.php'); ?>
 
-</body>
-</html>
+

@@ -1,7 +1,7 @@
 <?php
 
-    require_once('model/Article.php');
-    require_once('model/Comment.php');
+require_once('model/Article.php');
+require_once('model/Comment.php');
 
 
 class Controller {
@@ -15,20 +15,14 @@ class Controller {
     public function showPost() {
         $req = new Article;
         $post = $req->getPost($_GET['id']);
-        $comments = $this->getComments();
-        $nbrs = array_count_values($post);
-        if ( $_GET['id'] <= $nbrs ) {
+        $comReq = new CommentCtrlr;
+        $comments = $comReq->getComments($_GET['id']);
+        if ($post) {
             require('view/frontend/postView.php');
         } else {
             require('view/frontend/unknownPostView.php');
         }
     }
-
-    public function getComments() {
-        $req = new Comment;
-        $comments = $req->getComment($_GET['id']);
-        return $comments;
-    }
-
+    
 }
 

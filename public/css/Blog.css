@@ -1,0 +1,23 @@
+.article {
+    border: 1px solid black;
+    text-align: center;
+    margin: 10px;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+}
+
+.add_comment {
+    margin-bottom: 30px;
+}
+
+span.emptyForm {
+    display: none;
+    color: red;
+}
+
+.comment_info {
+    font-size: 0.8em;
+}

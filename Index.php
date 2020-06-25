@@ -2,15 +2,15 @@
 
 require('vendor/autoload.php');
 
-use \Controller\ViewCtrlr;
-use \Controller\CommentCtrlr;
+use \Controller\PostsCtrlr;
+use \Controller\CommentsCtrlr;
 use \Controller\AdminCtrlr;
 
 
 class Home { 
     public function redirection() {
-        $req = new ViewCtrlr;
-        $commentReq = new CommentCtrlr;
+        $req = new PostsCtrlr;
+        $commentReq = new CommentsCtrlr;
         $adminReq = new AdminCtrlr;
         if(isset($_GET['action'])) {
             $action = $_GET['action'];
@@ -34,20 +34,20 @@ class Home {
             } else if ($action === 'administration') {
                 $adminReq->accessCheck('view/backend/adminView.php');
             } else if ($action === 'deletePost') {
-                $adminReq->deletePost($_GET['id']);
+                $req->deletePost($_GET['id']);
             } else if ($action === 'createPost') {
                require('view/backend/addPostView.php');
             } else if ($action === 'newPost') {
-                $adminReq->add();
+                $req->newPost();
             } else if ($action === 'editPost') {
-                $adminReq->showPosttoEdit($_GET['id']);
+                $req->showPosttoEdit($_GET['id']);
             } else if ($action === 'updatePost') {
-                $adminReq->edit($_GET['id']);
+                $req->editPost($_GET['id']);
             } else if ($action === 'listComment') {
                 $comments = $commentReq->getComments($_GET['id']);
                 require('view/backend/listCommentsView.php');
             } else if ($action === 'deleteComment') {
-                $adminReq->deleteComment($_GET['comId']);
+                $commentReq->deleteComment($_GET['comId']);
             } else if ($action === 'reportComment') {
                 $commentReq->reportComment($_GET['comId']);
             } else if ($action === 'cancelReportComment') {
@@ -56,8 +56,10 @@ class Home {
                 $comments = $commentReq->showReportedComments();
             } else if ($action === 'legitimateComment') {
                 $commentReq->legitimateComment($_GET['comId']);
-            } else if ($action === 'register') {
-                $adminReq->register();
+            } else if ($action === 'registerAccess') {
+                $adminReq->registerAccess();
+            } else if ($action === 'addAdmin') {
+                $adminReq->addAdmin();
             } else if ($action === 'forbidden') {
                 require('view/frontend/forbiddenView.php');
             } else {

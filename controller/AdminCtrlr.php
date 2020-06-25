@@ -21,15 +21,29 @@ class AdminCtrlr {
         }
     }
 
-    public function register() {
-        if ( !empty($_POST['login']) && !empty($_POST['password']) ) {
-            $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $req = new Admin;
-            $req->register($_POST['login'], $pass_hache);
-            echo 'Ce compte a bien été créé !';
+    public function registerAccess() {
+        session_start();
+        if ( isset($_SESSION['admin']) ) {
+            require('view/backend/registerView.php');
         } else {
-            echo 'Veuillez renseigner tous les champs';
-        }    
+            header('Location: index.php?action=forbidden');
+        }   
+    }
+
+    public function addAdmin() {
+        session_start();
+        if ( isset($_SESSION['admin']) ) {
+                if ( !empty($_POST['login']) && !empty($_POST['password']) ) {
+                $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $req = new Admin;
+                $req->register($_POST['login'], $pass_hache);
+                echo 'Ce compte a bien été créé !';
+            } else {
+                echo 'Veuillez renseigner tous les champs';
+            }   
+        } else {
+            header('Location: index.php?action=forbidden');
+        }
     }
 
     public function deconnexion() {
@@ -64,66 +78,7 @@ class AdminCtrlr {
         }
     }
 
-    public function add() {
-        session_start();
-        if ( isset($_SESSION['admin']) ) {
-            if ( !empty($_POST['title']) && !empty($_POST['content']) ) { 
-                $req = new Article;
-                $req->addPost();
-                header('Location: index.php?action=administration');
-            } else {
-                echo '<p>Veuillez renseigner les champs !</p>
-                <p><a href="index.php?action=createPost"><input type="button" value="Retour" class="bttn"></a></p>';
-            }
-        } else {
-            header('Location: index.php?action=forbidden');
-        }
-    }
 
-    public function showPosttoEdit() {
-            $req = new Article;
-            $post = $req->getPost($_GET['id']);
-            if ($post) {
-                require('view/backend/editPostView.php');
-            } else {
-                require('view/frontend/unknownPostView.php');
-            }
-    }
-
-    public function edit($postId) {
-        session_start();
-        if ( isset($_SESSION['admin']) ) {
-                $req = new Article;
-                $req->updatePost($postId);
-                header('Location: index.php?action=administration');
-        } else {
-            header('Location: index.php?action=forbidden');
-        }
-    }
-
-    public function deletePost($postId) {
-        session_start();
-        if ( isset($_SESSION['admin']) ) {
-            $req = new Article;
-            $req->deletePost($postId);
-            $reqCom = new Comment;
-            $reqCom->deleteAllComments($postId);
-            echo ("<p>Article supprimé</p> <p><a href='Index.php?action=administration'>Retour à l'administration</a></p> "); 
-        } else {
-            header('Location: index.php?action=forbidden');
-        }
-    }
-
-    public function deleteComment($commentId) {
-        session_start();
-        if ( isset($_SESSION['admin']) ) {
-            $req = new Comment;
-            $req->deleteComment($commentId);
-            echo ("<p>Commentaire supprimé</p> <p><a href='Index.php'?action=administration'>Retour à l'administration</a></p>");
-        } else {
-            header('Location: index.php?action=forbidden');
-        }
-    }
 
 }
 

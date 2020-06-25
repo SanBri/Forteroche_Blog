@@ -5,7 +5,7 @@ namespace Controller;
 use \Model\Article;
 use \Model\Comment;
 
-class CommentCtrlr  {
+class CommentsCtrlr  {
 
     public function getComments($id) {
         $req = new Comment;
@@ -68,6 +68,17 @@ class CommentCtrlr  {
             $req = new Comment;
             $req->resetReported($commentId);
             header('Location: index.php?action=reportedComments');       
+        } else {
+            header('Location: index.php?action=forbidden');
+        }
+    }
+
+    public function deleteComment($commentId) {
+        session_start();
+        if ( isset($_SESSION['admin']) ) {
+            $req = new Comment;
+            $req->deleteComment($commentId);
+            echo ("<p>Commentaire supprimé</p> <p><a href='Index.php'?action=administration'>Retour à l'administration</a></p>");
         } else {
             header('Location: index.php?action=forbidden');
         }

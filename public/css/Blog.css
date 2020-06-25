@@ -117,15 +117,48 @@ h2 {
     text-align: center;;
 }
 
-.addPost_block {
+.block /* addAdmin & addPost depuis Administration */ {
     width: 150px;
     height: auto;
     text-align: center;
     border-radius: 5px;
     margin: auto;
     cursor: pointer;
+}
+
+.block i {
+    font-size: 5em;
+    padding-top: 20px;
+    padding-bottom: 0;
+}
+
+.addPost {
     border: solid 1px rgb(99, 214, 99);
 }
+
+.addPost p {
+    color:  rgb(99, 214, 99);
+}
+
+.addPost i {
+
+    color: rgb(99, 214, 99);
+}
+
+.addAdmin {
+    margin-top: 20px;
+    border: solid 1px rgb(103, 121, 221);
+}
+
+.addAdmin p {
+    color:  rgb(103, 121, 221);
+}
+
+.addAdmin i {
+    color:  rgb(103, 121, 221);
+}
+
+
 
 .reportedComments_block {
     width: 280px;
@@ -147,17 +180,6 @@ h2 {
 
 .reported:hover {
     background-color: rgba(175, 19, 19, 1);
-}
-
-.addPost_block p {
-    color:  rgb(99, 214, 99);
-}
-
-.addPost_block i {
-    font-size: 5em;
-    padding-top: 20px;
-    padding-bottom: 0;
-    color: rgb(99, 214, 99);
 }
 
 .options_icn {

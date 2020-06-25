@@ -20,7 +20,7 @@ ob_start(); ?>
         </div> <!-- reportedComments_block END -->
     <?php } ?> <!-- IF END -->
 
-    <div class="addPost_block"><a href="Index.php?action=createPost">
+    <div class="addPost block"><a href="Index.php?action=createPost">
         <i class="fas fa-plus-square"></i>
         <p>Ajouter un article</p>
     </a></div> <!-- addPost_block END -->
@@ -65,7 +65,14 @@ ob_start(); ?>
                 <a href="Index.php?action=administration&amp;page=<?= $currentPage + 1 ?>"><input type="button" value="Page suivante »" class="bttn"></a> 
             <?php }   ?>
 
-        </div> <!-- PAGINATION_BLOCK END -->
+    </div> <!-- PAGINATION_BLOCK END -->
+
+<!--  
+    <div class="addAdmin block"><a href="Index.php?action=registerAccess">
+        <i class="fas fa-user-lock"></i>
+        <p>Ajouter un administrateur</p>
+    </a></div> <! -- addAdmin block END 
+-->
 
 </div> <!-- CONTAINER END -->
 

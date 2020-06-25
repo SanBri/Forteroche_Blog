@@ -19,7 +19,7 @@ ob_start(); ?>
                 <?php if ( isset($_SESSION['admin']) ) { ?> 
                     <div class="options_icn post_options">
                         <div class="editPost">
-                            <i class="fas fa-edit" title="Modifier l'article"></i>
+                            <a href="index.php?action=editPost&amp;id=<?= $post['id'] ?>"><i class="fas fa-edit" title="Modifier l'article"></i></a>                        
                         </div>
                         <div class="deletePost">
                         <a href="index.php?action=deletePost&amp;id=<?= $post['id'] ?>">

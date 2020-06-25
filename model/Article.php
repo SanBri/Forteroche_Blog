@@ -37,6 +37,13 @@ class Article {
         $req->execute( array('', $_POST['title'], $_POST['content'], date('Y-m-d H:i:s')) );
     }
 
+    public function updatePost($postId) {
+        $dbPosts = $this->dbConnect();
+        $req = $dbPosts->prepare("UPDATE articles SET title = ?, content = ? WHERE id = $postId");
+        $req->execute( array($_POST['title'], $_POST['content']) );
+        return $req;
+    }
+
     public function deletePost($postId) {
         // INSERER MESSAGE DE CONFIRMATION
         $dbPosts = $this->dbConnect();

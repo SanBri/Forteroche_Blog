@@ -4,10 +4,6 @@ ob_start(); ?>
 
 <div class="container">
 
-    <div class="header">
-        <!-- < ? = // $header ?> -->
-    </div>
-
     <div class="article">
         <div class="article_content">
                 <p>Cet article n'existe pas !</p>

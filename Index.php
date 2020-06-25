@@ -39,6 +39,10 @@ class Home {
                require('view/backend/addPostView.php');
             } else if ($action === 'newPost') {
                 $adminReq->add();
+            } else if ($action === 'editPost') {
+                $adminReq->showPosttoEdit($_GET['id']);
+            } else if ($action === 'updatePost') {
+                $adminReq->edit($_GET['id']);
             } else if ($action === 'listComment') {
                 $comments = $commentReq->getComments($_GET['id']);
                 require('view/backend/listCommentsView.php');
@@ -54,6 +58,8 @@ class Home {
                 $commentReq->legitimateComment($_GET['comId']);
             } else if ($action === 'register') {
                 $adminReq->register();
+            } else if ($action === 'forbidden') {
+                require('view/frontend/forbiddenView.php');
             } else {
                 $req->listPosts();
             }

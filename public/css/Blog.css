@@ -48,6 +48,14 @@ h2 {
     background-color: rgba(60, 139, 60, 1);
 }
 
+.error_403 {
+    color: rgb(60, 139, 60);
+    font-weight: bold;
+}
+
+.error_403 i {
+    font-size: 4em;
+}
 
 /* HEADER */
 
@@ -212,3 +220,4 @@ h2 {
     width: 50%;
     height: 500px;
 }
+

@@ -35,7 +35,7 @@ ob_start(); ?>
             <div class="options_icn post_options">
 
                 <div class="editPost">
-                    <i class="fas fa-edit" title="Modifier l'article"></i>
+                    <a href="index.php?action=editPost&amp;id=<?= $post['id'] ?>"><i class="fas fa-edit" title="Modifier l'article"></i></a>
                 </div>
                 <div class="deletePost">
                     <a href="index.php?action=deletePost&amp;id=<?= $post['id'] ?>"><i class="fas fa-trash-alt" title="Supprimer l'article"></i></a>
@@ -53,7 +53,7 @@ ob_start(); ?>
     <div class="pagination_block">
             
             <?php if ($currentPage > 1) { ?> 
-                <a href="Index.php?action=administration&amp;page=<?= $currentPage - 1 ?>"><input type="button" value="< Page précédente" class="bttn"></a>
+                <a href="Index.php?action=administration&amp;page=<?= $currentPage - 1 ?>"><input type="button" value="« Page précédente" class="bttn"></a>
                 <a href="Index.php?action=administration&amp;page=1"><input type="button" value="1" class="bttn"></a>
 
             <?php } ?>
@@ -62,7 +62,7 @@ ob_start(); ?>
             <!-- PAGE ACTUELLE -->
             <?php if ($currentPage < $pages) { ?>
                 <a href="Index.php?action=administration&amp;page=<?= $pages ?>"><input type="button" value="<?= $pages ?>" class="bttn"></a>   
-                <a href="Index.php?action=administration&amp;page=<?= $currentPage + 1 ?>"><input type="button" value="Page suivante >" class="bttn"></a> 
+                <a href="Index.php?action=administration&amp;page=<?= $currentPage + 1 ?>"><input type="button" value="Page suivante »" class="bttn"></a> 
             <?php }   ?>
 
         </div> <!-- PAGINATION_BLOCK END -->

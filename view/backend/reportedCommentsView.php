@@ -1,4 +1,4 @@
-<?php session_start();
+<?php 
 $title = "Commentaires signalés";
 ob_start(); ?>
 

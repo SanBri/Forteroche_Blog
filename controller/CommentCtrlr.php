@@ -51,16 +51,26 @@ class CommentCtrlr  {
     }
 
     public function showReportedComments() {
+        session_start();
+        if ( isset($_SESSION['admin']) ) {
             $req = new Comment;
             $comments = $req->reportedComments();
             $nbReportedComments = $req->countReportedComments();
             require('view/backend/reportedCommentsView.php');
+        } else {
+            header('Location: index.php?action=forbidden');
+        }
     }
 
     public function legitimateComment($commentId) {
+        session_start();
+        if ( isset($_SESSION['admin']) ) {
             $req = new Comment;
             $req->resetReported($commentId);
-            header('Location: index.php?action=reportedComments');
+            header('Location: index.php?action=reportedComments');       
+        } else {
+            header('Location: index.php?action=forbidden');
+        }
     }
 
 }

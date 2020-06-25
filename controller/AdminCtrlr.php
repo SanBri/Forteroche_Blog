@@ -60,7 +60,7 @@ class AdminCtrlr {
             }
             require($url);
         } else {
-            header('Location: Index.php');
+            header('Location: index.php?action=forbidden');
         }
     }
 
@@ -76,7 +76,28 @@ class AdminCtrlr {
                 <p><a href="index.php?action=createPost"><input type="button" value="Retour" class="bttn"></a></p>';
             }
         } else {
-            header('Location : Index.php');
+            header('Location: index.php?action=forbidden');
+        }
+    }
+
+    public function showPosttoEdit() {
+            $req = new Article;
+            $post = $req->getPost($_GET['id']);
+            if ($post) {
+                require('view/backend/editPostView.php');
+            } else {
+                require('view/frontend/unknownPostView.php');
+            }
+    }
+
+    public function edit($postId) {
+        session_start();
+        if ( isset($_SESSION['admin']) ) {
+                $req = new Article;
+                $req->updatePost($postId);
+                header('Location: index.php?action=administration');
+        } else {
+            header('Location: index.php?action=forbidden');
         }
     }
 
@@ -89,7 +110,7 @@ class AdminCtrlr {
             $reqCom->deleteAllComments($postId);
             echo ("<p>Article supprimé</p> <p><a href='Index.php?action=administration'>Retour à l'administration</a></p> "); 
         } else {
-            header('Location : Index.php');
+            header('Location: index.php?action=forbidden');
         }
     }
 
@@ -100,7 +121,7 @@ class AdminCtrlr {
             $req->deleteComment($commentId);
             echo ("<p>Commentaire supprimé</p> <p><a href='Index.php'?action=administration'>Retour à l'administration</a></p>");
         } else {
-            header('Location: Index.php');
+            header('Location: index.php?action=forbidden');
         }
     }
 

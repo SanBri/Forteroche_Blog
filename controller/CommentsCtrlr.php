@@ -14,10 +14,16 @@ class CommentsCtrlr  {
     }
 
     public function checkComment() {
-        if ( !empty($_POST['userName']) && !empty($_POST['comment']) ) {
-            $req = new Comment;
-            $req->addComment();
-            header('Location: index.php?action=post&id=' . $_POST['postID'] . '#redirCom');
+        if ( !empty($_POST['userName']) && !empty($_POST['comment']) && isset($_POST["g-recaptcha-response"])) {
+            $recaptcha = new \ReCaptcha\ReCaptcha("6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe");
+            $resp = $recaptcha->verify($_POST["g-recaptcha-response"]);
+            if ($resp->isSuccess()) {
+                $req = new Comment;
+                $req->addComment();
+                header('Location: index.php?action=post&id=' . $_POST['postID'] . '#redirCom');
+            } else {
+                header('Location: index.php?action=post&id=' . $_POST['postID']);
+            }
         } else {
             header('Location: index.php?action=post&id=' . $_POST['postID']);
         }

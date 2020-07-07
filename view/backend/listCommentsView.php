@@ -4,8 +4,9 @@ ob_start();
 ?>
 
 <section>
-
-    <h2>Liste des Commentaires</h2>
+    <div class="title">
+    <h1>Liste des Commentaires</h1>
+    </div>
 
     <div class="buttons_list">
         <a href="Index.php?action=post&amp;id=<?= $_GET['id'] ?>"><input type="button" value="Voir l'article" class="bttn"></a>

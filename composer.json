@@ -4,5 +4,8 @@
             "Controller\\" : "controller/",
             "Model\\" : "model/"
         }
+    },
+    "require": {
+        "google/recaptcha": "~1.1"
     }
 }

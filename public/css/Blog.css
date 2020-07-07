@@ -16,6 +16,10 @@ h2 {
     text-align: center;
 }
 
+.title {
+    color: rgb(60, 139, 60)
+}
+
 .bttn {
     height: 30px;
     border: none;
@@ -59,6 +63,11 @@ h2 {
 
 /* HEADER */
 
+.head_block {
+    height: 30px;
+    width: 100%;
+}
+
 .admin_connexion {
     margin-left: 90%;
 }
@@ -69,8 +78,12 @@ h2 {
 
 /* POST VIEW */
 
-.add_comment {
+.add_comment_block {
     margin-bottom: 30px;
+}
+
+.g-recaptcha {
+    display: inline-block;
 }
 
 .comment_info {
@@ -101,6 +114,10 @@ h2 {
 
 #legitimateComment:hover /* USER ICON */ {
     color: rgb(99, 214, 99);
+}
+
+.line {
+    border-bottom : 0.1px solid rgba(60, 139, 60, 0.3);
 }
 
 /* ADMIN SECTION */

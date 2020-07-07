@@ -16,7 +16,7 @@ ob_start(); ?>
 </div>
 
 <div class="createPost">
-    <form action='Index.php?action=newPost' method="post">
+    <form action='Index.php?action=newPost' method="post" enctype="multipart/form-data"> 
         <p><input type="text" placeholder="Titre de l'article" name="title" maxlength=50 size=150/></p>
         <p><textarea placeholder="" name="content" rows=10 cols=40></textarea></p>
         <input type="submit" value="Valider" class="bttn">

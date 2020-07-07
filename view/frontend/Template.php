@@ -8,24 +8,27 @@
     <link rel="stylesheet" href="public/css/Blog.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://cdn.tiny.cloud/1/cjgjybypx0spctvhpkvjg6unu89di4hkke40mpc2xpisiu5g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
 
-    <header> 
-        <?php 
-        if ( isset($_SESSION['admin']) ) { ?>
-                <div class="admin_connected">
-                <?php if (isset($_GET['action']) && $_GET['action'] === "administration") { ?>
-                    <a href='Index.php'><input type="button" value="Retour au Blog" class="bttn"></a>
-                    <a href='Index.php?action=deconnexion'><input type="button" value="Déconnexion" class="bttn"></a>
-                <?php } else { ?>
-                    <a href='Index.php?action=administration'><input type="button" value="Administration" class="bttn"></a>
-                    <a href='Index.php?action=deconnexion'><input type="button" value="Déconnexion" class="bttn"></a>
-                <?php } ?>
-                </div>
-        <?php } else {     
-            if ( isset($_GET['action']) && $_GET['action'] === "connexion") {
+<div class="container">
+    <header>
+        <div class="head_block">
+            <?php 
+            if ( isset($_SESSION['admin']) ) { ?>
+                    <div class="admin_connected">
+                    <?php if (isset($_GET['action']) && $_GET['action'] === "administration") { ?>
+                        <a href='Index.php'><input type="button" value="Retour au Blog" class="bttn"></a>
+                        <a href='Index.php?action=deconnexion'><input type="button" value="Déconnexion" class="bttn"></a>
+                    <?php } else { ?>
+                        <a href='Index.php?action=administration'><input type="button" value="Administration" class="bttn"></a>
+                        <a href='Index.php?action=deconnexion'><input type="button" value="Déconnexion" class="bttn"></a>
+                    <?php } ?>
+                    </div>
+            <?php } else {     
+                if ( isset($_GET['action']) && $_GET['action'] === "connexion") {
                     // "Connexion" n'apparaît pas depuis la page de connexion
                 } else { ?>  
                     <div class="admin_connexion">
@@ -33,7 +36,10 @@
                     </div>
                 <?php } 
             } ?>
+        </div> <!-- HEAD_BLOCK END -->
     </header>
+
+</div> <!-- CONTAINER END -->    
 
     <?= $content ?>
 

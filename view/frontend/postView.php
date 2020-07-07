@@ -40,11 +40,12 @@ ob_start(); ?>
                 <h2>Commentaires</h2>
             </div>
 
-            <div class="add_comment">
+            <div class="add_comment_block">
                 <h3>Ajouter un commentaire :</h3>
                 <form action='Index.php?action=postComment&amp;id=<?= $_GET["id"] ?>' method="post">
                     <p><input type="text" placeholder="Nom d'utilisateur" name="userName" maxlength=20 size=15/></p>
                     <p><textarea placeholder="Veuillez rédiger votre commentaire" name="comment" rows=10 cols=40></textarea></p>
+                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div><br/>
                     <input type="hidden" name="postID" value="<?= $_GET['id'] ?>">
                     <input type="submit" value="Envoyer" id="redirCom">
                 </form>
@@ -52,6 +53,8 @@ ob_start(); ?>
 
             <?php while ($comment = $comments->fetch() ) { ?>
                 <div class="each_comment" >
+
+                    <div class="line"></div>
                 
                     <div class="comment_info">
                             <p><?= '<strong>' . htmlspecialchars($comment['author']) .  '</strong> |  <em>' . $comment['creation_date_fr'] . '</em>'; ?></p>

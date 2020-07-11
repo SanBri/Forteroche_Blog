@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['token'])) {
+   $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(6));
+}
+?>
+
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">

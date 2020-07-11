@@ -16,9 +16,10 @@ ob_start(); ?>
 </div>
 
 <div class="createPost">
-    <form action='Index.php?action=newPost' method="post" enctype="multipart/form-data"> 
+    <form action='Index.php?action=newPost&amp;token=<?= $_SESSION['token'] ?>' method="post" enctype="multipart/form-data"> 
         <p><input type="text" placeholder="Titre de l'article" name="title" maxlength=50 size=150/></p>
         <p><textarea placeholder="" name="content" rows=10 cols=40></textarea></p>
+        <p><input type="file" name="image"></p>
         <input type="submit" value="Valider" class="bttn">
     </form>
 </div>

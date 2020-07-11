@@ -39,17 +39,48 @@ class PostsCtrlr {
 
     public function newPost() {
         session_start();
-        if ( isset($_SESSION['admin']) ) {
+        if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
             if ( !empty($_POST['title']) && !empty($_POST['content']) ) { 
-                $req = new Article;
-                $req->addPost();
-                header('Location: index.php?action=administration');
+                $image = $this->imageCheck();
+                if ( $image ) {
+                    $req = new Article;
+                    $req->addPost($image);
+                    header('Location: index.php?action=administration');
+                }
             } else {
                 echo '<p>Veuillez renseigner les champs !</p>
                 <p><a href="index.php?action=createPost"><input type="button" value="Retour" class="bttn"></a></p>';
             }
         } else {
             header('Location: index.php?action=forbidden');
+        }
+    }
+
+    public function ImageCheck() {
+        if ($_FILES['image']['size'] != 0) {
+            $imgPath = 'public/images/';
+            $image = basename($_FILES['image']['name']);
+            $extensions = array('.png', '.gif', '.jpg', '.jpeg');
+            $extension = strrchr($_FILES['image']['name'],'.');
+            $maxSize = 100000;
+            $size = filesize($_FILES['image']['tmp_name']);
+            if (!in_array($extension, $extensions)) {
+                var_dump($_FILES['image']);
+                echo "Le format du fichier n'est pas valide ! (Les formats acceptés sont : .png, .gif, .jpg et .jpeg)";
+            } else {
+                if ($size>$maxSize) { 
+                echo "La taille du fichier est trop élevée ! (Taille maximum : 100Ko)";
+                } else {
+                    $image = strtr($image, 'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ','AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+                    $image = preg_replace("/([^.a-z0-9]+)/i", '-', $image);
+                    $renamedImage = time() . $image; // Pour éviter un conflit en cas d'upload du même nom
+                    if ( move_uploaded_file($_FILES['image']['tmp_name'], $imgPath . $renamedImage) ) {
+                        return $renamedImage;
+                    } 
+                }
+            }
+        } else {
+            echo 'Veuillez choisir une image !';
         }
     }
 
@@ -63,24 +94,34 @@ class PostsCtrlr {
             }
     }
 
-    public function editPost($postId) {
+    public function editPost($postId, $oldImage) {
         session_start();
-        if ( isset($_SESSION['admin']) ) {
+        if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
+            if ( !empty($_POST['title']) && !empty($_POST['content']) ) { 
+                $image = $this->ImageCheck();
                 $req = new Article;
-                $req->updatePost($postId);
-                header('Location: index.php?action=administration');
+                if ($image) {
+                    $req->updatePost($postId, $image);
+                    unlink($oldImage); // Pour supprimer le fichier image dans le répertoire "/public/images"
+                    header('Location: index.php?action=post&id=' . $_POST['postID']);
+                }
+            } else {
+                echo '<p>Veuillez renseigner les champs !</p>
+                <p><a href="index.php?action=createPost"><input type="button" value="Retour" class="bttn"></a></p>';
+            }
         } else {
             header('Location: index.php?action=forbidden');
         }
     }
 
-    public function deletePost($postId) {
+    public function deletePost($postId, $image) {
         session_start();
-        if ( isset($_SESSION['admin']) ) {
+        if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
             $req = new Article;
             $req->deletePost($postId);
             $reqCom = new Comment;
             $reqCom->deleteAllComments($postId);
+            unlink($image); // Pour supprimer le fichier image dans le répertoire "/public/images"
             echo ("<p>Article supprimé</p> <p><a href='Index.php?action=administration'>Retour à l'administration</a></p> "); 
         } else {
             header('Location: index.php?action=forbidden');
@@ -88,4 +129,3 @@ class PostsCtrlr {
     }
     
 }
-

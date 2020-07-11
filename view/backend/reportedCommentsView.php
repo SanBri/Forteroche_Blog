@@ -17,11 +17,11 @@ ob_start(); ?>
             <div class="options_icn comment_options icnInList">
 
                 <div class="deleteCommentIcn">
-                    <a href="Index.php?action=deleteComment&amp;comId=<?= $comment['id'] ?>"><i class="fas fa-times" title="Supprimer ce commentaire"></i>
+                    <a href="Index.php?action=deleteComment&amp;comId=<?= $comment['id'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-times" title="Supprimer ce commentaire"></i>
                 </div>
 
                 <div class="legitimateComment">
-                    <a href="Index.php?action=legitimateComment&amp;comId=<?= $comment['id'] ?>"><i class="far fa-check-circle" title="Légitimer ce commentaire"></i></a>
+                    <a href="Index.php?action=legitimateComment&amp;comId=<?= $comment['id'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="far fa-check-circle" title="Légitimer ce commentaire"></i></a>
                 </div>
 
             </div>

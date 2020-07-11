@@ -34,7 +34,8 @@ class Home {
             } else if ($action === 'administration') {
                 $adminReq->accessCheck('view/backend/adminView.php');
             } else if ($action === 'deletePost') {
-                $req->deletePost($_GET['id']);
+                $image = 'public/images/' . $_GET['img'];
+                $req->deletePost($_GET['id'], $image);
             } else if ($action === 'createPost') {
                require('view/backend/addPostView.php');
             } else if ($action === 'newPost') {
@@ -42,7 +43,8 @@ class Home {
             } else if ($action === 'editPost') {
                 $req->showPosttoEdit($_GET['id']);
             } else if ($action === 'updatePost') {
-                $req->editPost($_GET['id']);
+                $oldImage = 'public/images/' . $_GET['img'];
+                $req->editPost($_GET['id'], $oldImage);
             } else if ($action === 'listComment') {
                 $comments = $commentReq->getComments($_GET['id']);
                 require('view/backend/listCommentsView.php');

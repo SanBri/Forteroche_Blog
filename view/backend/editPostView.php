@@ -16,9 +16,13 @@ ob_start(); ?>
 </div>
 
 <div class="createPost">
-    <form action='Index.php?action=updatePost&amp;id=<?= $post['id'] ?>' method="post">
+    <form enctype="multipart/form-data" action='Index.php?action=updatePost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>' method="post">
         <p><strong>Titre de l'article : </strong></br><input type="text" value="<?= $post['title'] ?>" name="title" maxlength=50 size=150/></p>
         <p><strong>Contenu de l'article : </strong></br><textarea name="content" rows=10 cols=40><?= $post['content'] ?></textarea></p>
+        <p><strong>Image actuelle de l'article :</strong></p>
+        <p><img src="/public/images/<?= $post['img'] ?>" alt="<?= $post['img'] ?>" width="350px"></p>
+        <p>Modifier l'image : <input type="file" name="image"></p>
+        <input type="hidden" name="postID" value="<?= $_GET['id'] ?>">
         <input type="submit" value="Valider" class="bttn">
     </form>
 </div>

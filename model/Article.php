@@ -8,11 +8,11 @@ class Article {
         $dbPosts = new \PDO('mysql:host=localhost;port=3308;dbname=blog','root', '', array(\PDO::ATTR_ERRMODE => 
         \PDO::ERRMODE_EXCEPTION));
         return $dbPosts;
-    }
-
+    }  
+    
     public function getPosts($perPage, $offset) {
         $dbPosts = $this->dbConnect();
-        $res = $dbPosts->query("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr FROM articles ORDER BY id DESC LIMIT $perPage OFFSET $offset");
+        $res = $dbPosts->query("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles ORDER BY id DESC LIMIT $perPage OFFSET $offset");
         return $res;
     }
 
@@ -24,23 +24,23 @@ class Article {
 
     public function getPost($postId) {
         $dbPosts = $this->dbConnect();
-        $req = $dbPosts->prepare("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr FROM articles WHERE  id = ? ");
+        $req = $dbPosts->prepare("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles WHERE  id = ? ");
         $req->execute(array($postId));
         $post = $req->fetch();
         return $post;
     } 
 
-    public function addPost() {
+    public function addPost($image) {
         date_default_timezone_set('Europe/Paris');
         $dbPosts = $this->dbConnect();
-        $req = $dbPosts->prepare( "INSERT INTO articles(id, title, content, creation_date) VALUES(?, ?, ?, ?)" );
-        $req->execute( array('', $_POST['title'], $_POST['content'], date('Y-m-d H:i:s')) );
+        $req = $dbPosts->prepare( "INSERT INTO articles(id, title, content, creation_date, img) VALUES(?, ?, ?, ?, ?)" );
+        $req->execute( array('', $_POST['title'], $_POST['content'], date('Y-m-d H:i:s'), $image) );
     }
 
-    public function updatePost($postId) {
+    public function updatePost($postId, $image) {
         $dbPosts = $this->dbConnect();
-        $req = $dbPosts->prepare("UPDATE articles SET title = ?, content = ? WHERE id = $postId");
-        $req->execute( array($_POST['title'], $_POST['content']) );
+        $req = $dbPosts->prepare("UPDATE articles SET title = ?, content = ?, img = ? WHERE id = $postId");
+        $req->execute( array($_POST['title'], $_POST['content'], $image) );
         return $req;
     }
 

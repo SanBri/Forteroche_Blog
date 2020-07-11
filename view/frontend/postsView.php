@@ -17,9 +17,9 @@ ob_start(); ?>
             </div>
 
             <div class="article_content">
-                <div class="article_text">
-                    <p><?php echo $post['content'];?></p>
-                    <a href="index.php?action=post&amp;id=<?= $post['id'] ?>"><input type="button" value="Lire la suite" class="bttn"></a>
+                <div class="article_img">
+                <p><img src="public\images\<?= $post['img'] ?>" alt= <?= $post['img'] ?> width="250px"></p>
+                <a href="index.php?action=post&amp;id=<?= $post['id'] ?>"><input type="button" value="Lire le chapitre" class="bttn"></a>
                 </div> 
             </div>
         </div>

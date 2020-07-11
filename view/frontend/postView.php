@@ -11,18 +11,27 @@ ob_start(); ?>
                 <h2><?= $post['title'];?></h2>
             </div>
 
+            <div class="article_img">   
+                <img src="public\images\<?= $post['img'] ?>" alt= <?= $post['img'] ?> width="350px">
+            </div>
+
+            <div class="line"></div>
+
+
             <div class="article_content">
                 <div class="article_text">
                     <p><?= $post['content']; ?></p>
                     <a href="index.php?action=posts"><input type="button" value="Retour aux Articles" class="bttn"></a>
                 </div>
                 <?php if ( isset($_SESSION['admin']) ) { ?> 
+                    <div class="line up bottom"></div>
                     <div class="options_icn post_options">
                         <div class="editPost">
-                            <a href="index.php?action=editPost&amp;id=<?= $post['id'] ?>"><i class="fas fa-edit" title="Modifier l'article"></i></a>                        
+                            <a href="index.php?action=editPost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-edit" title="Modifier l'article"></i></a>                        
                         </div>
                         <div class="deletePost">
-                        <a href="index.php?action=deletePost&amp;id=<?= $post['id'] ?>">
+                        
+                        <a href="index.php?action=deletePost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>">
                             <i class="fas fa-trash-alt" title="Supprimer l'article"></i>
                         </a>
                         </div>
@@ -66,7 +75,7 @@ ob_start(); ?>
                         </div>
                         <div class="comment_icn">
                             <?php if ( isset($_SESSION['admin']) ) { ?> 
-                                <a href="Index.php?action=deleteComment&amp;comId=<?= $comment['id'] ?>"><i class="fas fa-times" title="Supprimer ce commentaire"></i></a>
+                                <a href="Index.php?action=deleteComment&amp;comId=<?= $comment['id'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-times" title="Supprimer ce commentaire"></i></a>
                             <?php } else { 
                                 if ( isset($_SESSION['"'.$comment['id'].'"']) && $_SESSION['"'.$comment['id'].'"'] === $comment['id'])  { ?>
                                     <a href="Index.php?action=cancelReportComment&amp;id=<?= $comment['id_posts'] ?>&amp;comId=<?= $comment['id'] ?>"><i class="far fa-check-circle" id="legitimateComment" title="Désignaler ce commentaire"></i></a>

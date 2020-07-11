@@ -38,6 +38,18 @@ h2 {
     background-color: rgba(60, 139, 60, 1);
 }
 
+.line {
+    border-bottom : 0.1px solid rgba(60, 139, 60, 0.3);
+}
+
+.top { /* Laisser un espace entre line & bttn */
+    padding-top: 10px;
+}
+
+.bottom {
+    padding-bottom: 10px;
+}
+
 .buttons_list {
     text-align: center;
 }
@@ -114,10 +126,6 @@ h2 {
 
 #legitimateComment:hover /* USER ICON */ {
     color: rgb(99, 214, 99);
-}
-
-.line {
-    border-bottom : 0.1px solid rgba(60, 139, 60, 0.3);
 }
 
 /* ADMIN SECTION */

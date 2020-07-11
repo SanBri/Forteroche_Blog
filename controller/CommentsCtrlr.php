@@ -10,7 +10,7 @@ class CommentsCtrlr  {
     public function getComments($id) {
         $req = new Comment;
         $comments = $req->getComment($id);
-        return $comments;
+        return $comments; 
     }
 
     public function checkComment() {
@@ -70,7 +70,7 @@ class CommentsCtrlr  {
 
     public function legitimateComment($commentId) {
         session_start();
-        if ( isset($_SESSION['admin']) ) {
+        if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
             $req = new Comment;
             $req->resetReported($commentId);
             header('Location: index.php?action=reportedComments');       
@@ -81,7 +81,7 @@ class CommentsCtrlr  {
 
     public function deleteComment($commentId) {
         session_start();
-        if ( isset($_SESSION['admin']) ) {
+        if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
             $req = new Comment;
             $req->deleteComment($commentId);
             echo ("<p>Commentaire supprimé</p> <p><a href='Index.php'?action=administration'>Retour à l'administration</a></p>");

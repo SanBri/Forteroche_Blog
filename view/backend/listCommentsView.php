@@ -24,7 +24,7 @@ ob_start();
                     <p><?= htmlspecialchars($comment['comment']) ?></p>
                 </div>
                 <div class="comment_icn icnInList">
-                    <a href="Index.php?action=deleteComment&amp;comId=<?= $comment['id'] ?>"><i class="fas fa-times deleteCommentIcn" title="Supprimer ce commentaire"></i></a>
+                    <a href="Index.php?action=deleteComment&amp;comId=<?= $comment['id'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-times deleteCommentIcn" title="Supprimer ce commentaire"></i></a>
                 </div>
             </div>
 

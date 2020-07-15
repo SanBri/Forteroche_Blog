@@ -21,8 +21,7 @@ ob_start(); ?>
     <?php } ?> <!-- IF END -->
 
     <div class="addPost block"><a href="Index.php?action=createPost">
-        <i class="fas fa-plus-square"></i>
-        <p>Ajouter un article</p>
+    <p><i class="fas fa-plus-square"></i>Ajouter un article</p>
     </a></div> <!-- addPost_block END -->
 
 

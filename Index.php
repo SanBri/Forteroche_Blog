@@ -16,12 +16,18 @@ class Home {
             $action = $_GET['action'];
             if ($action === 'post') {
                 if ( isset($_GET['id']) && $_GET['id'] > 0 ) {
-                    $req->showPost();
+                    $req->showPost($_GET['id']);
                     $id = $_GET['id'];
                     return $id;
                 } else {
                     require('view/frontend/unknownPostView.php');
                 }
+            } else if ($action === 'posts') {
+                $req->listPosts();
+            } else if ($action === 'nextPost') {
+                $req->nextPost($_GET['id']);
+            } else if ($action === 'previousPost') {
+                $req->previousPost($_GET['id']);
             } else if ($action === 'postComment') {
                 $commentReq->checkComment();
             } else if ($action === 'connexion') {
@@ -34,7 +40,7 @@ class Home {
             } else if ($action === 'administration') {
                 $adminReq->accessCheck('view/backend/adminView.php');
             } else if ($action === 'deletePost') {
-                $image = 'public/images/' . $_GET['img'];
+                $image = 'public/images/posts_img/' . $_GET['img'];
                 $req->deletePost($_GET['id'], $image);
             } else if ($action === 'createPost') {
                require('view/backend/addPostView.php');
@@ -43,7 +49,7 @@ class Home {
             } else if ($action === 'editPost') {
                 $req->showPosttoEdit($_GET['id']);
             } else if ($action === 'updatePost') {
-                $oldImage = 'public/images/' . $_GET['img'];
+                $oldImage = 'public/images/posts_img/' . $_GET['img'];
                 $req->editPost($_GET['id'], $oldImage);
             } else if ($action === 'listComment') {
                 $comments = $commentReq->getComments($_GET['id']);
@@ -65,10 +71,10 @@ class Home {
             } else if ($action === 'forbidden') {
                 require('view/frontend/forbiddenView.php');
             } else {
-                $req->listPosts();
+                $lastPost = $req->showHomePage();
             }
         } else {
-            $req->listPosts();
+           $req->showHomePage();
         } 
     }
 

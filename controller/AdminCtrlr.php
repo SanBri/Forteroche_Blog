@@ -63,9 +63,9 @@ class AdminCtrlr {
             }        
             $perPage = 2;
             $offset = $perPage * ($currentPage - 1);
-            $req = new Article;
+            $req = new Article; 
             $posts = $req->getPosts($perPage, $offset);
-            $nbPosts = $req->countPost();
+            $nbPosts = $req->countPosts();
             $pages = ceil($nbPosts / $perPage); //ceil() arrondit au supérieur
             $reqCom = new Comment;
             $nbReportedComments = $reqCom->countReportedComments();

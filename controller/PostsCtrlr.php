@@ -11,13 +11,14 @@ class PostsCtrlr {
         if( isset($_GET['page']) && $_GET['page'] > 1 ){
             $currentPage = (int)$_GET['page'];
         } else {
-            $currentPage = 1;
-        }        
+            $currentPage = 1; 
+        } 
         $perPage = 2;
         $offset = $perPage * ($currentPage - 1);
         $req = new Article;
         $posts = $req->getPosts($perPage, $offset);
-        $nbPosts = $req->countPost();
+        $nbPosts = $req->countPosts();
+        $lastPost = $req->getLastPost();
         $pages = ceil($nbPosts / $perPage); //ceil() arrondit au supérieur
         if ( isset($_GET['page']) && $_GET['page'] > $pages) {
             $currentPage = $pages;
@@ -25,16 +26,26 @@ class PostsCtrlr {
         require('view/frontend/postsView.php');
     }
 
-    public function showPost() {
+    public function showPost($postID) {
         $req = new Article;
-        $post = $req->getPost($_GET['id']);
+        $post = $req->getPost($postID);
         $comReq = new CommentsCtrlr;
-        $comments = $comReq->getComments($_GET['id']);
+        $comments = $comReq->getComments($postID);
+        $lastPost = $req->getLastPost();
+        $firstPost = $req->getFirstPost();   
         if ($post) {
             require('view/frontend/postView.php');
         } else {
             require('view/frontend/unknownPostView.php');
         }
+    }
+
+    public function showHomePage() {
+        $req = new Article;
+        $lastPost = $req->getLastPost();
+        $firstPost = $req->getFirstPost();
+        $nbPosts = $req->countPosts();
+        require('view/frontend/homeView.php');
     }
 
     public function newPost() {
@@ -58,7 +69,7 @@ class PostsCtrlr {
 
     public function ImageCheck() {
         if ($_FILES['image']['size'] != 0) {
-            $imgPath = 'public/images/';
+            $imgPath = 'public/images/posts_img/';
             $image = basename($_FILES['image']['name']);
             $extensions = array('.png', '.gif', '.jpg', '.jpeg');
             $extension = strrchr($_FILES['image']['name'],'.');
@@ -126,6 +137,26 @@ class PostsCtrlr {
         } else {
             header('Location: index.php?action=forbidden');
         }
+    }
+
+    public function nextPost($postID) {
+        $req = new Article; 
+        $nextPost = $req->ifNextPostExists($postID);
+        header('Location: index.php?action=post&id=' . $nextPost);
+        $this->showPost($nextPost);
+
+    }
+
+    public function previousPost($postID) {
+        $req = new Article; 
+        $previousPost = $req->ifPreviousPostExists($postID);
+        if ($previousPost) {
+            header('Location: index.php?action=post&id=' . $previousPost);
+            $this->showPost($previousPost);
+        } else {
+            header('Location: index.php?action=uknokwn');
+        }
+
     }
     
 }

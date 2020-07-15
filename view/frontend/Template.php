@@ -19,8 +19,7 @@ if (!isset($_SESSION['token'])) {
 
 <body>
 
-<div class="container">
-    <header>
+<header>
         <div class="head_block">
             <?php 
             if ( isset($_SESSION['admin']) ) { ?>
@@ -45,9 +44,9 @@ if (!isset($_SESSION['token'])) {
         </div> <!-- HEAD_BLOCK END -->
     </header>
 
-</div> <!-- CONTAINER END -->    
+<?= $content ?>
 
-    <?= $content ?>
+
 
 </body>
 </html>

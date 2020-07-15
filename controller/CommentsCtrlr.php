@@ -20,13 +20,9 @@ class CommentsCtrlr  {
             if ($resp->isSuccess()) {
                 $req = new Comment;
                 $req->addComment();
-                header('Location: index.php?action=post&id=' . $_POST['postID'] . '#redirCom');
-            } else {
-                header('Location: index.php?action=post&id=' . $_POST['postID']);
-            }
-        } else {
-            header('Location: index.php?action=post&id=' . $_POST['postID']);
+            } 
         }
+        header('Location: index.php?action=post&id=' . $_POST['postID'] . '#redirCom');
     }
 
     public function reportComment($commentId) {
@@ -84,7 +80,9 @@ class CommentsCtrlr  {
         if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
             $req = new Comment;
             $req->deleteComment($commentId);
-            echo ("<p>Commentaire supprimé</p> <p><a href='Index.php'?action=administration'>Retour à l'administration</a></p>");
+            echo "<p>Commentaire supprimé.</p> 
+            <a href='index.php?action=administration'>Administration</a> |
+            <a href='index.php?action=reportedComments'>Commentaires signalés</a>";
         } else {
             header('Location: index.php?action=forbidden');
         }

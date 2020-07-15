@@ -7,21 +7,29 @@ ob_start(); ?>
     <section> <!--- POST SECTION --->
         <div class="article">
 
+            <div class="nav_chapters">
+               <?php if ($_GET['id'] != $firstPost['id']) { ?>
+                <a href="index.php?action=previousPost&amp;id=<?=  $post['id'] ?>"><input type="button" value="< Chapitre Précédent" class="bttn"></a>
+                <?php } ?>
+                <a href="index.php?action=posts"><input type="button" value="Retour aux Chapitres" class="bttn"></a>
+                <?php if ($_GET['id'] != $lastPost['id']) { ?>
+                <a href="index.php?action=nextPost&amp;id=<?=  $post['id'] ?>"><input type="button" value="Chapitre Suivant >" class="bttn"></a> 
+                <?php } ?>
+            </div>
+
             <div class="article_title">
                 <h2><?= $post['title'];?></h2>
             </div>
 
             <div class="article_img">   
-                <img src="public\images\<?= $post['img'] ?>" alt= <?= $post['img'] ?> width="350px">
+                <img src="public\images\posts_img\<?= $post['img'] ?>" alt= <?= $post['img'] ?> width="350px">
             </div>
-
             <div class="line"></div>
 
 
             <div class="article_content">
                 <div class="article_text">
                     <p><?= $post['content']; ?></p>
-                    <a href="index.php?action=posts"><input type="button" value="Retour aux Articles" class="bttn"></a>
                 </div>
                 <?php if ( isset($_SESSION['admin']) ) { ?> 
                     <div class="line up bottom"></div>
@@ -36,6 +44,16 @@ ob_start(); ?>
                         </a>
                         </div>
                     </div>
+                <?php } ?>
+            </div> 
+            
+            <div class="nav_chapters">
+                <?php if ($_GET['id'] != $firstPost['id']) { ?>
+                    <a href="index.php?action=previousPost&amp;id=<?=  $post['id'] ?>"><input type="button" value="< Chapitre Précédent" class="bttn"></a>
+                <?php } ?>
+                    <a href="index.php?action=posts"><input type="button" value="Retour aux Chapitres" class="bttn"></a>
+                <?php if ($_GET['id'] != $lastPost['id']) { ?>
+                    <a href="index.php?action=nextPost&amp;id=<?=  $post['id'] ?>"><input type="button" value="Chapitre Suivant >" class="bttn"></a> 
                 <?php } ?>
             </div>
 

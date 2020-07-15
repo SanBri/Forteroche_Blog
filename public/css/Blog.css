@@ -1,10 +1,58 @@
+/* RESET CSS */
+
+html, body, h1 {
+	margin: 0;
+	padding: 0;
+	border: 0;
+    font-size: 100%;
+	font: inherit;
+    vertical-align: baseline;
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+/* FONTS */
+
+@font-face {
+    font-family: "Calligraffiti";
+    src:url('/public/fonts/Calligraffiti.woff') format('woff'),
+        url('/public/fonts/Calligraffiti.ttf') format('truetype'),
+        url('/public/fonts/Calligraffiti.svg') format('truetype'),
+        url('/public/fonts/Calligraffiti.eot') format('eot')
+}
+
+@font-face {
+    font-family: "Argh";
+    src:url('/public/fonts/Aaargh-webfont.eot') format('eot'),
+        url('/public/fonts//Aaargh-webfont.woff') format('woff'),
+        url('/public/fonts/Aaargh-webfont.truetype') format('truetype'),
+        url('/public/fonts/Aaargh-webfont.svg') format('svg');
+}
+  
+  @font-face {
+    font-family: "Philosopher";
+    src:url('/public/fonts/Philosopher.eot') format('eot'),
+        url('/public/fonts/Philosopher.svg') format('svg'),
+        url('/public/fonts/Philosopher.ttf') format('truetype'),
+        url('/public/fonts/Philosopher.woff') format('woff');
+}
+
 /* GENERAL */
+
+.container {
+    background-color: rgba(34, 130, 146, 0.5);
+}
 
 .article {
     border: 1px solid rgb(60, 139, 60);
+    background: white;
     text-align: center;
     width: 70%;
-    margin: 10px auto;
+    margin: auto;
     padding-bottom: 20px;
 }
 
@@ -17,7 +65,8 @@ h2 {
 }
 
 .title {
-    color: rgb(60, 139, 60)
+    color: rgb(60, 139, 6);
+    text-align: center;;
 }
 
 .bttn {
@@ -28,8 +77,8 @@ h2 {
     color: white;
     font-weight: bold;
     cursor: pointer;
-    margin: auto;
     border-radius: 5px;
+    margin-top: 10px;
     transition-property: background-color; 
     transition-duration: 0.5s; 
 }
@@ -46,10 +95,6 @@ h2 {
     padding-top: 10px;
 }
 
-.bottom {
-    padding-bottom: 10px;
-}
-
 .buttons_list {
     text-align: center;
 }
@@ -58,26 +103,40 @@ h2 {
     text-align: center;
 }
 
-.current /* REPORTED VIEW BUTTON */ {
+.current {
     cursor: default;
     border: 1.5px solid black;
     background-color: rgba(60, 139, 60, 1);
 }
 
-.error_403 {
+/* ERRORS VIEW */
+
+.error_block {
+    border: 1px solid rgb(60, 139, 60);
+    background: white;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.error {
     color: rgb(60, 139, 60);
     font-weight: bold;
 }
 
-.error_403 i {
+.error i {
     font-size: 4em;
 }
 
 /* HEADER */
 
 .head_block {
+    z-index: 2;
     height: 30px;
     width: 100%;
+    position: fixed;
 }
 
 .admin_connexion {
@@ -86,6 +145,122 @@ h2 {
    
 .admin_connected {
     margin-left: 80%;
+}
+
+/* WELCOME BLOCK */
+
+.welcome_block {
+    z-index: 0;
+    height: 100vh;
+    background-color: white; /* SI L'IMAGE NE S'AFFICHE PAS */
+    background: url('/public/images/alaska_wall.jpg') no-repeat center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+.welcome_content {
+    width: 50%;
+    padding-left: 225px;
+    text-shadow: 3px 1px 5px black;
+}
+
+.novel_title {
+    font-family: "Calligraffiti", "Arial", "sans-serif";
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 2em;
+    padding-top: 20%;
+}
+
+.novel_author {
+    font-family: "Argh", "Arial", "sans-serif";
+    padding-left: 300px;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.arrow_next i {
+    position: absolute;
+    top: 52%;
+    left: 53%;
+    font-size: 3em;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+.arrow_next i:hover{
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+}
+
+/* INTRODUCTION BLOCK  */
+
+.introduction_block {
+    height: 100vh;
+    background-color: rgba(34, 130, 146, 0.5);
+    padding-top: 10px;
+}
+
+.introduction_text {
+    margin: auto;
+}
+
+.introduction_text p {
+    font-family: "Philosopher", "Arial", "sans-serif";
+    text-shadow: 3px 1px 5px black;
+    color: white;
+    font-size: 2em;
+    padding: 10px 0 0 15%;
+}
+
+.intro_text_2 {
+    padding-left: 150px;
+}
+
+.introduction_navLogo {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    justify-items: center;
+    font-family: "Argh", Helvetica, sans-serif;
+}
+
+.navLogo {
+    width: 20%;
+    height: 300px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navLogo .line {
+    width: 50%;
+    margin: auto;
+    padding-top: 25px;
+    border-bottom : 0.2px solid rgba(255, 255, 255, 0.3);
+}
+
+.navLogo i {
+    font-size: 3em;
 }
 
 /* POST VIEW */
@@ -138,36 +313,29 @@ h2 {
     border: solid 1px rgb(60, 139, 60)
 }
 
-.title {
-    text-align: center;;
-}
-
 .block /* addAdmin & addPost depuis Administration */ {
-    width: 150px;
-    height: auto;
+    width: 180px;
     text-align: center;
     border-radius: 5px;
-    margin: auto;
+    margin: 20px auto;
     cursor: pointer;
-}
-
-.block i {
-    font-size: 5em;
-    padding-top: 20px;
-    padding-bottom: 0;
+    padding: 5px;
+    border: 0.4px solid silver;
+    box-shadow: 1px 1px 0px white;;
 }
 
 .addPost {
-    border: solid 1px rgb(99, 214, 99);
+    background-color: rgb(60, 139, 60);
 }
 
 .addPost p {
-    color:  rgb(99, 214, 99);
+    font-weight: bold;
+    color:  white
 }
 
 .addPost i {
-
-    color: rgb(99, 214, 99);
+    color: white;
+    padding-right: 12px;
 }
 
 .addAdmin {
@@ -182,8 +350,6 @@ h2 {
 .addAdmin i {
     color:  rgb(103, 121, 221);
 }
-
-
 
 .reportedComments_block {
     width: 280px;
@@ -253,7 +419,7 @@ h2 {
     color: rgb(99, 214, 99);;
 }
 
-/* ADMIN CREATE NEW POST */
+/* ADMIN CREATE POST VIEW */
 
 .createPost {
     border: 1px solid rgb(60, 139, 60);

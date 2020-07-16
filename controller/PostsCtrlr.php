@@ -13,7 +13,7 @@ class PostsCtrlr {
         } else {
             $currentPage = 1; 
         } 
-        $perPage = 2;
+        $perPage = 3;
         $offset = $perPage * ($currentPage - 1);
         $req = new Article;
         $posts = $req->getPosts($perPage, $offset);
@@ -33,6 +33,7 @@ class PostsCtrlr {
         $comments = $comReq->getComments($postID);
         $lastPost = $req->getLastPost();
         $firstPost = $req->getFirstPost();   
+        setcookie('actualChapter', $postID, time()+365*24*3600, null, null, false, true);
         if ($post) {
             require('view/frontend/postView.php');
         } else {
@@ -42,25 +43,39 @@ class PostsCtrlr {
 
     public function showHomePage() {
         $req = new Article;
+        if (isset($_COOKIE['actualChapter'])) {
+            $actualPost = $req->getActualPost($_COOKIE['actualChapter']);
+        }
         $lastPost = $req->getLastPost();
         $firstPost = $req->getFirstPost();
         $nbPosts = $req->countPosts();
         require('view/frontend/homeView.php');
     }
 
+    public function createPost() {
+            $req = new Article;
+            $lastPost = $req->getLastPost();
+            require('view/backend/addPostView.php');
+
+    }
+
     public function newPost() {
         session_start();
         if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
-            if ( !empty($_POST['title']) && !empty($_POST['content']) ) { 
-                $image = $this->imageCheck();
-                if ( $image ) {
-                    $req = new Article;
-                    $req->addPost($image);
-                    header('Location: index.php?action=administration');
+            if ( !empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['chapter'])) { 
+                if (!preg_match('/^[0-9]+$/', $_POST['chapter']) ) {
+                    echo "Veuillez renseigner un numéro de chapitre valide !";
+                } 
+                if ($_FILES['image']['size'] != 0) {
+                    $image = $this->imageCheck();
+                } else {
+                    $image = null;
                 }
+                $req = new Article;
+                $req->addPost($image);
+                header('Location: index.php?action=administration');
             } else {
-                echo '<p>Veuillez renseigner les champs !</p>
-                <p><a href="index.php?action=createPost"><input type="button" value="Retour" class="bttn"></a></p>';
+                echo '<p>Veuillez renseigner les champs !</p>';
             }
         } else {
             header('Location: index.php?action=forbidden');
@@ -76,11 +91,10 @@ class PostsCtrlr {
             $maxSize = 100000;
             $size = filesize($_FILES['image']['tmp_name']);
             if (!in_array($extension, $extensions)) {
-                var_dump($_FILES['image']);
-                echo "Le format du fichier n'est pas valide ! (Les formats acceptés sont : .png, .gif, .jpg et .jpeg)";
+                exit("Le format du fichier n'est pas valide ! (Les formats acceptés sont : .png, .gif, .jpg et .jpeg)" );
             } else {
                 if ($size>$maxSize) { 
-                echo "La taille du fichier est trop élevée ! (Taille maximum : 100Ko)";
+                    exit("La taille du fichier est trop élevée ! (Taille maximum : 100Ko) ");
                 } else {
                     $image = strtr($image, 'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ','AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
                     $image = preg_replace("/([^.a-z0-9]+)/i", '-', $image);
@@ -95,31 +109,52 @@ class PostsCtrlr {
         }
     }
 
+    public function deleteImagePost($image, $postID) {
+        $req = new Article;
+        $req->deleteImage($postID);
+        unlink($image); // Pour supprimer le fichier image dans le répertoire "/public/images"
+    }
+
     public function showPosttoEdit() {
+        session_start();
+        if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
             $req = new Article;
             $post = $req->getPost($_GET['id']);
             if ($post) {
                 require('view/backend/editPostView.php');
             } else {
                 require('view/frontend/unknownPostView.php');
-            }
+            } 
+        } else {
+            header('Location: index.php?action=forbidden');
+        }
     }
 
-    public function editPost($postId, $oldImage) {
+    public function editPost($postID, $oldImage) {
         session_start();
         if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
             if ( !empty($_POST['title']) && !empty($_POST['content']) ) { 
-                $image = $this->ImageCheck();
                 $req = new Article;
-                if ($image) {
-                    $req->updatePost($postId, $image);
-                    unlink($oldImage); // Pour supprimer le fichier image dans le répertoire "/public/images"
-                    header('Location: index.php?action=post&id=' . $_POST['postID']);
+                if ($_FILES['image']['size'] != 0) { 
+                    $image = $this->imageCheck();
+                    if ($oldImage != null) {
+                        unlink($oldImage); // Pour supprimer le fichier image dans le répertoire "/public/images"
+                    }
+                } else {
+                    if ($oldImage != "public/images/posts_img/") {
+                        $sameImage = strrchr($oldImage, '/');
+                        $image = $sameImage;
+                    }
                 }
-            } else {
-                echo '<p>Veuillez renseigner les champs !</p>
-                <p><a href="index.php?action=createPost"><input type="button" value="Retour" class="bttn"></a></p>';
-            }
+                if (isset($_POST['deletedImageCheck'])) { // Si l'img a été supprimée depuis <icn>
+                    unlink($oldImage); 
+                    if (($_FILES['image']['size'] === 0)) { // Si aucune image pour remplacer
+                        $image = null;
+                    }
+                }
+                $req->updatePost($postID, $image);
+                header('Location: index.php?action=post&id=' . $_POST['postID']); 
+            } 
         } else {
             header('Location: index.php?action=forbidden');
         }
@@ -132,8 +167,10 @@ class PostsCtrlr {
             $req->deletePost($postId);
             $reqCom = new Comment;
             $reqCom->deleteAllComments($postId);
-            unlink($image); // Pour supprimer le fichier image dans le répertoire "/public/images"
-            echo ("<p>Article supprimé</p> <p><a href='Index.php?action=administration'>Retour à l'administration</a></p> "); 
+            if ( $image != "public/images/posts_img/" ) {
+                unlink($image); // Pour supprimer le fichier image dans le répertoire "/public/images"
+            }
+            header('Location: Index.php?action=administration'); 
         } else {
             header('Location: index.php?action=forbidden');
         }
@@ -144,7 +181,6 @@ class PostsCtrlr {
         $nextPost = $req->ifNextPostExists($postID);
         header('Location: index.php?action=post&id=' . $nextPost);
         $this->showPost($nextPost);
-
     }
 
     public function previousPost($postID) {

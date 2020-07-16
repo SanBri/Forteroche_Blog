@@ -14,7 +14,9 @@ if (!isset($_SESSION['token'])) {
     <link rel="stylesheet" href="public/css/Blog.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://cdn.tiny.cloud/1/cjgjybypx0spctvhpkvjg6unu89di4hkke40mpc2xpisiu5g/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer>
+
+</script>
 </head>
 
 <body>
@@ -46,6 +48,8 @@ if (!isset($_SESSION['token'])) {
 
 <?= $content ?>
 
+<script src="public/js/PostImage.js" async defer></script>
+<script src="public/js/LightSwitch.js" async defer></script>
 
 
 </body>

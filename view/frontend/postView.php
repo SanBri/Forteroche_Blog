@@ -5,6 +5,14 @@ ob_start(); ?>
 <div class="container">
 
     <section> <!--- POST SECTION --->
+        <div class="light_block">
+            <div class="lightMode">
+                <i class="far fa-lightbulb" id="bright"></i>
+                <i class="fas fa-lightbulb" id="dark"></i>
+            </div>
+        </div>
+
+    
         <div class="article">
 
             <div class="nav_chapters">
@@ -16,18 +24,19 @@ ob_start(); ?>
                 <a href="index.php?action=nextPost&amp;id=<?=  $post['id'] ?>"><input type="button" value="Chapitre Suivant >" class="bttn"></a> 
                 <?php } ?>
             </div>
+            
+            <div class="article_content">      
+                <?php if ($post['img'] != null) { ?> 
+                    <div class="article_img">   
+                        <img src="public\images\posts_img\<?= $post['img'] ?>" alt= <?= $post['img'] ?> width="350px">
+                    </div>
+                <div class="line"></div>
+                <?php } ?>
 
-            <div class="article_title">
-                <h2><?= $post['title'];?></h2>
-            </div>
+                <div class="article_title">
+                    <h2>Chapitre <?= $post['chapter'] ?> : <?= $post['title'];?></h2>
+                </div>
 
-            <div class="article_img">   
-                <img src="public\images\posts_img\<?= $post['img'] ?>" alt= <?= $post['img'] ?> width="350px">
-            </div>
-            <div class="line"></div>
-
-
-            <div class="article_content">
                 <div class="article_text">
                     <p><?= $post['content']; ?></p>
                 </div>
@@ -38,15 +47,14 @@ ob_start(); ?>
                             <a href="index.php?action=editPost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-edit" title="Modifier l'article"></i></a>                        
                         </div>
                         <div class="deletePost">
-                        
-                        <a href="index.php?action=deletePost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>">
+                            <a href="index.php?action=confirmDeletePost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>">
                             <i class="fas fa-trash-alt" title="Supprimer l'article"></i>
-                        </a>
+                            </a>
                         </div>
                     </div>
                 <?php } ?>
             </div> 
-            
+                
             <div class="nav_chapters">
                 <?php if ($_GET['id'] != $firstPost['id']) { ?>
                     <a href="index.php?action=previousPost&amp;id=<?=  $post['id'] ?>"><input type="button" value="< Chapitre Précédent" class="bttn"></a>
@@ -70,8 +78,8 @@ ob_start(); ?>
             <div class="add_comment_block">
                 <h3>Ajouter un commentaire :</h3>
                 <form action='Index.php?action=postComment&amp;id=<?= $_GET["id"] ?>' method="post">
-                    <p><input type="text" placeholder="Nom d'utilisateur" name="userName" maxlength=20 size=15/></p>
-                    <p><textarea placeholder="Veuillez rédiger votre commentaire" name="comment" rows=10 cols=40></textarea></p>
+                    <p><input type="text" placeholder="Nom d'utilisateur" name="userName" maxlength=20 size=15/ required></p>
+                    <p><textarea placeholder="Veuillez rédiger votre commentaire" name="comment" rows=10 cols=40 required></textarea></p>
                     <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div><br/>
                     <input type="hidden" name="postID" value="<?= $_GET['id'] ?>">
                     <input type="submit" value="Envoyer" id="redirCom">

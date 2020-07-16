@@ -1,27 +1,20 @@
 <?php session_start(); 
-$title = "Blog";
+$title = "Liste des Chapitres";
 ob_start(); ?>
 
 <div class="container">
 
-    <div class="bloc_lastPost article">
-        <h3>Dernier chapitre publié :</h3>
-        <p><img src="public\images\posts_img\<?= $lastPost['img'] ?>" alt= <?= $lastPost['img'] ?> width="100px"></p>
-        <p><strong><?= $lastPost['title']; ?></strong></p>
-        <a href="index.php?action=post&amp;id=<?= $lastPost['id'] ?>"><input type="button" value="Lire le dernier chapitre" class="bttn"></a>
-    </div> <!--- LASTPOST END --->
-
     <div class="bloc_articles">
-    
         <?php while ($post = $posts->fetch() ) { ?>
         <div class="article">
+
             <div class="article_title">
-                <h2><?php echo $post['title'];?></h2>
+                <h2>Chapitre <?= $post['chapter'] ?> : <?= $post['title']; ?></h2>
             </div>
 
             <div class="article_content">
                 <div class="article_img">
-                <p><img src="public\images\posts_img\<?= $post['img'] ?>" alt= <?= $post['img'] ?> width="250px"></p>
+                <p><img src="public\images\posts_img\<?= $post['img'] ?>" alt= <?= $post['img'] ?> width="100px"></p>
                 <a href="index.php?action=post&amp;id=<?= $post['id'] ?>"><input type="button" value="Lire le chapitre" class="bttn"></a>
                 </div> 
             </div>

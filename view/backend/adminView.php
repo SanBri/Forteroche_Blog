@@ -24,25 +24,23 @@ ob_start(); ?>
     <p><i class="fas fa-plus-square"></i>Ajouter un article</p>
     </a></div> <!-- addPost_block END -->
 
-
     <?php while ($post = $posts->fetch() ) { ?>
 
         <div class="article">
-            <h3><a href="index.php?action=post&amp;id=<?= $post['id'] ?>"> <?= $post['title']; ?></a></h3>
+
+            <h3><a href="index.php?action=post&amp;id=<?= $post['id'] ?>"> Chapitre <?= $post['chapter']; ?> : <br /><?= $post['title']; ?></a></h3>
             <p><em>Posté <?= $post['creation_date_fr']; ?></em></p>
 
             <div class="options_icn post_options">
-
                 <div class="editPost">
-                    <a href="index.php?action=editPost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>"><i class="fas fa-edit" title="Modifier l'article"></i></a>                        
+                    <a href="index.php?action=editPost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-edit" title="Modifier l'article"></i></a>                        
                 </div>
                 <div class="deletePost">
-                    <a href="index.php?action=deletePost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-trash-alt" title="Supprimer l'article"></i></a>
+                    <a href="index.php?action=confirmDeletePost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-trash-alt" title="Supprimer l'article"></i></a>
                 </div>
                 <div class="deleteComment">
                     <a href="index.php?action=listComment&amp;id=<?= $post['id'] ?>"><i class="fas fa-comment-slash" title="Supprimer un commentaire"></i></a>
                 </div>
-
             </div> <!-- OPTIONS_ICN END -->
             
         </div> <!-- ARTICLE END -->

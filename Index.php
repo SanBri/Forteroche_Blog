@@ -42,8 +42,10 @@ class Home {
             } else if ($action === 'deletePost') {
                 $image = 'public/images/posts_img/' . $_GET['img'];
                 $req->deletePost($_GET['id'], $image);
+            } else if ($action === 'confirmDeletePost') {
+                require('view/backend/confirmDeletePostView.php');
             } else if ($action === 'createPost') {
-               require('view/backend/addPostView.php');
+                $req->createPost();
             } else if ($action === 'newPost') {
                 $req->newPost();
             } else if ($action === 'editPost') {

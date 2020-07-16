@@ -12,7 +12,7 @@ class Article {
     
     public function getPosts($perPage, $offset) {
         $dbPosts = $this->dbConnect();
-        $res = $dbPosts->query("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles ORDER BY id DESC LIMIT $perPage OFFSET $offset");
+        $res = $dbPosts->query("SELECT id, chapter, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles ORDER BY id DESC LIMIT $perPage OFFSET $offset");
         return $res;
     }
 
@@ -22,27 +22,34 @@ class Article {
         return $nbPosts;
     }
 
+    public function getPost($postID) {
+        $dbPosts = $this->dbConnect();
+        $req = $dbPosts->prepare("SELECT id, chapter, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles WHERE  id = ? ");
+        $req->execute(array($postID));
+        $post = $req->fetch();
+        return $post;
+    } 
+
     public function getLastPost() {
         $dbPosts = $this->dbConnect();
-        $res = $dbPosts->query("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles ORDER BY id DESC LIMIT 1");
+        $res = $dbPosts->query("SELECT id, chapter, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles ORDER BY id DESC LIMIT 1");
         $lastPost = $res->fetch();
         return $lastPost;
     }
 
     public function getFirstPost() {
         $dbPosts = $this->dbConnect();
-        $res = $dbPosts->query("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles ORDER BY id LIMIT 1");
+        $res = $dbPosts->query("SELECT id, chapter, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles ORDER BY id LIMIT 1");
         $firstPost = $res->fetch();
         return $firstPost;
     }
 
-    public function getPost($postID) {
+    public function getActualPost($postID) {
         $dbPosts = $this->dbConnect();
-        $req = $dbPosts->prepare("SELECT id, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles WHERE  id = ? ");
-        $req->execute(array($postID));
-        $post = $req->fetch();
-        return $post;
-    } 
+        $req = $dbPosts->query("SELECT id, chapter, title, content, DATE_FORMAT(creation_date, 'le %d/%m/%Y à %H:%i') AS creation_date_fr, img FROM articles WHERE id = $postID");
+        $actualPost = $req->fetch();
+        return $actualPost;
+    }
 
     public function addPost($image) {
         date_default_timezone_set('Europe/Paris');

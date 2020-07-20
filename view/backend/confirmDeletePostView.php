@@ -2,7 +2,13 @@
 $title = 'Confirmation';
 ob_start(); ?>
 
+<section>
     <div class="container">
+
+        <div class="title">
+            <h1>Confirmation</h1>
+        </div>
+
         <div class="error_block">
             <div class="article_content">
                 <p><span class="warning"><i class="fas fa-exclamation-circle"></i></p>
@@ -13,6 +19,7 @@ ob_start(); ?>
             </div>
         </div>
     </div>
+</section>
 
 
 <?php $content = ob_get_clean(); 

@@ -15,6 +15,8 @@ class PostImage {
 }
 
 let deleteImg = new PostImage;
-deleteIcn.addEventListener('click', () => {
-    deleteImg.hideImage();
-})
+if ( deleteIcn ) {
+    deleteIcn.addEventListener('click', () => {
+        deleteImg.hideImage();
+    })
+}

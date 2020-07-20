@@ -73,16 +73,25 @@ class CommentsCtrlr  {
         } else {
             header('Location: index.php?action=forbidden');
         }
-    }
+    } 
 
     public function deleteComment($commentId) {
         session_start();
         if ( isset($_SESSION['admin']) && $_SESSION['token'] === $_GET['token'] ) {
             $req = new Comment;
             $req->deleteComment($commentId);
+            if ($_GET['from'] === "reportedComments") {
+                header('Location: index.php?action=reportedComments');
+            } else if ($_GET['from'] === "post") {
+                header('Location: index.php?action=post&id=' . $_GET['id']);
+            } else if ($_GET['from'] === "listComments") {
+                header('Location: index.php?action=listComment&id=' . $_GET['id']);
+            }
+            /*
             echo "<p>Commentaire supprimé.</p> 
             <a href='index.php?action=administration'>Administration</a> |
             <a href='index.php?action=reportedComments'>Commentaires signalés</a>";
+            */
         } else {
             header('Location: index.php?action=forbidden');
         }

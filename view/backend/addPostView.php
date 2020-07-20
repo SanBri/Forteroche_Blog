@@ -2,7 +2,9 @@
 session_start();
 $title = "Nouvel Article";
 ob_start();
-$lastChapter = $lastPost['chapter'] + 1 ?>
+if ($lastPost) {
+  $newChapter = $lastPost['chapter'] + 1;
+} ?>
 
 <script>
   tinymce.init({
@@ -22,7 +24,12 @@ $lastChapter = $lastPost['chapter'] + 1 ?>
   <div class="createPost">
       <form action='Index.php?action=newPost&amp;token=<?= $_SESSION['token'] ?>' method="post" enctype="multipart/form-data"> 
           <p><input type="text" placeholder="Titre du chapitre" name="title" maxlength=50 size=150 required></p>
-          <p><strong>Numéro de Chapitre : </strong><input type="number" name="chapter" value="<?= $lastChapter ?>" min="0" max="9999" size="3"  required></p>
+          <p><strong>Numéro de Chapitre : </strong><input type="number" name="chapter" 
+          <?php if ($lastPost) { ?>
+            value="<?= $newChapter ?>" 
+          <?php } else { ?> 
+            value="1" <?php 
+          } ?> min="0" max="9999" size="3"  required></p>
           <p><textarea placeholder="" name="content" rows=10 cols=40></textarea></p>
           <p><input type="file" name="image"></p>
           <a href="index?action=administration"><input type="button" value="Annuler" class="bttn"></a>
@@ -31,7 +38,6 @@ $lastChapter = $lastPost['chapter'] + 1 ?>
   </div>
 
 </div>
-
 
 <?php $content = ob_get_clean();
 require('view/frontend/Template.php'); ?>

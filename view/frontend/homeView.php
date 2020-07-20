@@ -29,7 +29,7 @@ ob_start(); ?>
                 <?php if ( (isset($_COOKIE['actualChapter'])) && ($actualPost) )  { ?>
                     <div class="actualPost navLogo"> 
                         <h3>Reprendre la lecture :</h3>
-                        <div class="line"></div>
+                        <div class="short_line"></div>
                         <p>Chapitre <?= $actualPost['chapter'] ?></p>
                         <p><em>"<?= $actualPost['title'] ?>"</em></p>
                         <?php if ($actualPost['img'] != null) { ?>
@@ -42,7 +42,7 @@ ob_start(); ?>
                 <div class="introduction_navLogo">
                     <div class="firstPost navLogo">
                         <h3>Commencer le roman</h3>
-                        <div class="line"></div>
+                        <div class="short_line"></div>
                         <p>Chapitre <?= $firstPost['chapter'] ?></p>
                         <?php if ($firstPost['img'] != null) { ?> 
                             <img src="public\images\posts_img\<?= $firstPost['img'] ?>" alt= <?= $firstPost['img'] ?> width="50px"><br />
@@ -52,7 +52,7 @@ ob_start(); ?>
                     </div>
                     <div class="lastPost navLogo">
                         <h3>Dernier chapitre paru</h3>
-                        <div class="line"></div>
+                        <div class="short_line"></div>
                         <p>Chapitre <?= $lastPost['chapter'] ?></p>
                         <?php if ($lastPost['img'] != null) { ?> 
                             <img src="public\images\posts_img\<?= $lastPost['img'] ?>" alt= <?= $lastPost['img'] ?> width="50px"><br />
@@ -62,7 +62,7 @@ ob_start(); ?>
                     </div>
                     <div class="info navLogo">
                         <h3>Liste des chapitres</h3>
-                        <div class="line"></div>
+                        <div class="short_line"></div>
                         <p><i class="far fa-list-alt"></i></p>
                         <p><?php echo $nbPosts;
                         if ($nbPosts > 1) { ?> 

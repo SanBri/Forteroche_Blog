@@ -6,7 +6,6 @@ use \Controller\PostsCtrlr;
 use \Controller\CommentsCtrlr;
 use \Controller\AdminCtrlr;
 
-
 class Home { 
     public function redirection() {
         $req = new PostsCtrlr;
@@ -43,7 +42,11 @@ class Home {
                 $image = 'public/images/posts_img/' . $_GET['img'];
                 $req->deletePost($_GET['id'], $image);
             } else if ($action === 'confirmDeletePost') {
-                require('view/backend/confirmDeletePostView.php');
+                if (!empty($_SERVER['HTTP_REFERER'])) {
+                    require('view/backend/confirmDeletePostView.php');
+                } else {
+                    require('view/frontend/forbiddenView.php');
+                }
             } else if ($action === 'createPost') {
                 $req->createPost();
             } else if ($action === 'newPost') {

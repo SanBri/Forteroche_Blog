@@ -21,7 +21,7 @@ h1 {
     font-family: "Calligraffiti";
     src:url('/public/fonts/Calligraffiti.woff') format('woff'),
         url('/public/fonts/Calligraffiti.ttf') format('truetype'),
-        url('/public/fonts/Calligraffiti.svg') format('truetype'),
+        url('/public/fonts/Calligraffiti.svg') format('svg'),
         url('/public/fonts/Calligraffiti.eot') format('eot')
 }
 
@@ -41,13 +41,20 @@ h1 {
         url('/public/fonts/Philosopher.woff') format('woff');
 }
 
+  @font-face {
+    font-family: "AvantGarde";
+    src:url('/public/fonts/avantgarde.svg') format('svg'),
+        url('/public/fonts/avantgarde.ttf') format('truetype'),
+        url('/public/fonts/avantgarde.woff') format('woff');
+}
+
 /* GENERAL */
 
 .container {
-    padding-top: 50px;
-    height: 100%;
+    min-height: 100vh;
     padding-bottom: 20px;
     background-color: rgba(34, 130, 146, 0.5);
+    color: rgb(24, 24, 24);
 }
 
 .article {
@@ -68,8 +75,14 @@ h2 {
 }
 
 .title {
-    color: rgb(60, 139, 6);
-    text-align: center;;
+    padding-top: 20px;
+    text-align: center;
+    color: rgb(60, 139, 60);
+    text-shadow: 2px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+h1 {
+    font-family: "Argh", "Arial", "sans-serif";
 }
 
 .bttn {
@@ -82,8 +95,10 @@ h2 {
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
+    margin-bottom: 5px;
     transition-property: background-color; 
     transition-duration: 0.5s; 
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .bttn:hover {
@@ -94,8 +109,18 @@ h2 {
     border-bottom : 0.1px solid rgba(60, 139, 60, 0.3);
 }
 
+.short_line {
+    width: 50%;
+    margin: auto;
+    border-bottom : 0.2px solid rgba(3, 2, 2, 0.3);
+}
+
 .top { /* Laisser un espace entre line & bttn */
-    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.bottom { /* Laisser un espace entre line & bttn */
+    margin-bottom: 10px;
 }
 
 .buttons_list {
@@ -120,8 +145,9 @@ h2 {
     text-align: center;
     width: 70%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 20px;
     padding-bottom: 20px;
+    background-color: rgba(243, 237, 237, 0.563);
 }
 
 .error {
@@ -150,9 +176,10 @@ h2 {
 
 .head_block {
     z-index: 2;
-    height: 30px;
+    height: 0px;
     width: 100%;
     position: fixed;
+    padding-top: 10px;
 }
 
 .admin_connexion {
@@ -162,6 +189,11 @@ h2 {
 .admin_connected {
     margin-left: 88%;
 }
+
+.admin_connected .bttn {
+    margin: 2px;
+}
+
 
 /* WELCOME BLOCK */
 
@@ -244,11 +276,11 @@ h2 {
     text-shadow: 3px 1px 5px black;
     color: white;
     font-size: 2em;
-    padding: 10px 0 0 15%;
+    padding: 10px 0 20px 20%;
 }
 
 .intro_text_2 {
-    padding-left: 150px;
+    padding-left: 220px;
 }
 
 .introduction_navLogo {
@@ -260,7 +292,6 @@ h2 {
 
 .navLogo {
     margin: auto;
-
     width: 20%;
     height: 300px;
     text-align: center;
@@ -270,15 +301,13 @@ h2 {
     border-radius: 10px;
 }
 
+.navLogo .bttn {
+    margin-top: 0;
+}
+
 .navLogo:hover {
     background-color: rgba(243, 237, 237, 0.739);
     color: black;
-}
-
-.navLogo .line {
-    width: 50%;
-    margin: auto;
-    border-bottom : 0.2px solid rgba(3, 2, 2, 0.3);
 }
 
 .navLogo i {
@@ -321,14 +350,33 @@ h2 {
     left: 40%;
 }
 
-.article_text {
+.article_content {
     width: 90%;
     margin: auto;
     text-align: center;
     word-wrap: break-word;
+    font-family: "AvantGarde", "Arial", "sans-serif";
 }
+
+.comment {
+    font-family: "Roboto", "Arial", "sans-serif";
+}
+
+.comment .short_line {
+    width: 10%;
+    border-bottom : 0.2px solid rgba(151, 136, 136, 0.5);
+}
+
 .add_comment_block {
     margin-bottom: 30px;
+}
+
+textarea, input{
+    font-family: "Roboto", "Arial", "sans-serif";
+    border: 0.5px solid rgb(60, 139, 6);
+    border-radius: 2px;
+    padding: 5px;
+    line-height: 1.1;
 }
 
 .g-recaptcha {
@@ -365,14 +413,32 @@ h2 {
     color: rgb(99, 214, 99);
 }
 
+/* POSTS LIST VIEW */
+
+.bloc_articles {
+    padding-top: 20px;
+    font-family: "AvantGarde", "Arial", "sans-serif";
+}
+
+.bloc_articles .article {
+    background-color: rgba(243, 237, 237, 0.563);
+}
+
+.bloc_articles .article:hover {
+    background-color: rgba(243, 237, 237, 1);
+}
+
 /* ADMIN SECTION */
 
 .connexion_block {
     margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 50%;
     height: 140px;
     text-align: center;
-    border: solid 1px rgb(60, 139, 60)
+    border: solid 1px rgb(60, 139, 60);
+    background-color: rgba(243, 237, 237, 0.563);
 }
 
 .block /* addAdmin & addPost depuis Administration */ {
@@ -481,7 +547,17 @@ h2 {
     color: rgb(99, 214, 99);;
 }
 
+/* ADMIN COMMENTS LIST */
+
+.each_comment {
+    font-family: "Roboto", "Arial", "sans-serif";
+}
+
 /* ADMIN CREATE POST VIEW */
+
+#imgPostInput {
+    border: none;
+}
 
 .createPost {
     border: 1px solid rgb(60, 139, 60);
@@ -527,8 +603,20 @@ h2 {
 
     /* INTRODUCTION BLOCK */
 
+    .arrow_next i {
+        top: 60%;
+    }
+
     .introduction_block {
         height: 100%;
-
     }
+
+    .introduction_text p {
+        padding: 10px 0 0 12%;
+    }
+
+    .intro_text_2 {
+        padding-left: 150px;
+    }
+
   }

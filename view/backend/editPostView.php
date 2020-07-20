@@ -23,7 +23,7 @@ ob_start(); ?>
       <p><strong>Numéro de Chapitre : </strong></br><input type="number" value="<?= $post['chapter'] ?>" name="chapter" min=0 max="9999" size=5  required></p>
       <p><strong>Contenu de l'article : </strong></br><textarea name="content" rows=10 cols=40 required> <?= $post['content'] ?></textarea></p>
       <div class="img_article_content">
-        <?php if ($post['img'] != null) { ?> 
+        <?php if ($post['img'] != null ) { ?> 
           <p id="actualImageText"><strong>Image actuelle du chapitre :</strong></p>
           <div class="articleImage">
             <i class="fas fa-times" title="Supprimer cette image" id="deletePostImgIcn"></i>
@@ -34,7 +34,7 @@ ob_start(); ?>
         <?php } else { ?>
           <p>Ajouter une image pour le chapitre :
         <?php } ?> 
-        <input type="file" name="image"></p>
+        <input type="file" name="image" id="imgPostInput"></p>
       </div>
       <input type="hidden" name="postID" value="<?= $_GET['id'] ?>">
       <a href="index?action=administration"><input type="button" value="Annuler" class="bttn"></a>

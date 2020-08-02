@@ -14,11 +14,11 @@ ob_start(); ?>
 <div class="container">
 
   <div class="title">
-    <h1>Éditer l'article : </br><em>"<?= $post['title'] ?>"</em></h1>
+    <h1>Editer l'article : </br><em>"<?= $post['title'] ?>"</em></h1>
   </div>
 
   <div class="createPost">
-    <form enctype="multipart/form-data" action='Index.php?action=updatePost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>' method="post">
+    <form enctype="multipart/form-data" action='index.php?action=updatePost&amp;id=<?= $post['id'] ?>&amp;img=<?= $post['img'] ?>&amp;token=<?= $_SESSION['token'] ?>' method="post">
       <p><strong>Titre du chapitre : </strong></br><input type="text" value="<?= $post['title'] ?>" name="title" maxlength=50 size=150 required></p>
       <p><strong>Numéro de Chapitre : </strong></br><input type="number" value="<?= $post['chapter'] ?>" name="chapter" min=0 max="9999" size=5  required></p>
       <p><strong>Contenu de l'article : </strong></br><textarea name="content" rows=10 cols=40 required> <?= $post['content'] ?></textarea></p>

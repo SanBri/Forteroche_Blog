@@ -7,7 +7,7 @@ ob_start(); ?>
     </div>
 
     <div class="connexion_block">
-        <form action='Index.php?action=addAdmin'  method='post'>
+        <form action='index.php?action=addAdmin'  method='post'>
             <p>Identifiant : <input type="text" name="login"></p>
             <p>Mot de passe : <input type="password" name="password"></p>
             <input type="submit" value="Valider" class="bttn">

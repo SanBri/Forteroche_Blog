@@ -88,13 +88,13 @@ class PostsCtrlr {
             $image = basename($_FILES['image']['name']);
             $extensions = array('.png', '.gif', '.jpg', '.jpeg');
             $extension = strrchr($_FILES['image']['name'],'.');
-            $maxSize = 100000;
+            $maxSize = 200000;
             $size = filesize($_FILES['image']['tmp_name']);
             if (!in_array($extension, $extensions)) {
                 exit("Le format du fichier n'est pas valide ! (Les formats acceptés sont : .png, .gif, .jpg et .jpeg)" );
             } else {
                 if ($size>$maxSize) { 
-                    exit("La taille du fichier est trop élevée ! (Taille maximum : 100Ko) ");
+                    exit("La taille du fichier est trop élevée ! (Taille maximum : 200Ko) ");
                 } else {
                     $image = strtr($image, 'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ','AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
                     $image = preg_replace("/([^.a-z0-9]+)/i", '-', $image);
@@ -170,7 +170,7 @@ class PostsCtrlr {
             if ( $image != "public/images/posts_img/" ) {
                 unlink($image); // Pour supprimer le fichier image dans le répertoire "/public/images"
             }
-            header('Location: Index.php?action=administration'); 
+            header('Location: index.php?action=administration'); 
         } else {
             header('Location: index.php?action=forbidden');
         }

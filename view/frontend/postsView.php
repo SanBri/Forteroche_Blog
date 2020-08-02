@@ -31,16 +31,16 @@ ob_start(); ?>
             <div class="pagination_block">
                 
                 <?php if ($currentPage > 1) { ?> 
-                    <a href="Index.php?action=posts&amp;page=<?= $currentPage - 1 ?>"><input type="button" value="« Page précédente" class="bttn"></a>
-                    <a href="Index.php?action=posts&amp;page=1"><input type="button" value="1" class="bttn"></a>
+                    <a href="index.php?action=posts&amp;page=<?= $currentPage - 1 ?>"><input type="button" value="« Page précédente" class="bttn"></a>
+                    <a href="index.php?action=posts&amp;page=1"><input type="button" value="1" class="bttn"></a>
 
                 <?php } ?>
                 <!-- PAGE ACTUELLE -->
                 <input type="button" value="<?= $currentPage?>" class="bttn current">
                 <!-- PAGE ACTUELLE -->
                 <?php if ($currentPage < $pages) { ?>
-                    <a href="Index.php?action=posts&amp;page=<?= $pages ?>"><input type="button" value="<?= $pages ?>" class="bttn"></a>   
-                    <a href="Index.php?action=posts&amp;page=<?= $currentPage + 1 ?>"><input type="button" value="Page suivante »" class="bttn"></a> 
+                    <a href="index.php?action=posts&amp;page=<?= $pages ?>"><input type="button" value="<?= $pages ?>" class="bttn"></a>   
+                    <a href="index.php?action=posts&amp;page=<?= $currentPage + 1 ?>"><input type="button" value="Page suivante »" class="bttn"></a> 
                 <?php }   ?>
 
             </div> <!-- PAGINATION_BLOCK END -->

@@ -26,20 +26,19 @@ ob_start(); ?>
                     <p><span class="intro_text_2">QUE VOUS DÉCOUVRIREZ AU FIL DES SEMAINES... </p>
                 </div>
                 <div class="space">
+                <div class="introduction_navLogo">
                 <?php if ( (isset($_COOKIE['actualChapter'])) && ($actualPost) )  { ?>
-                    <div class="actualPost navLogo"> 
+                    <div class="firstPost navLogo"> 
                         <h3>Reprendre la lecture :</h3>
                         <div class="short_line"></div>
                         <p>Chapitre <?= $actualPost['chapter'] ?></p>
-                        <p><em>"<?= $actualPost['title'] ?>"</em></p>
                         <?php if ($actualPost['img'] != null) { ?>
                             <img src="public\images\posts_img\<?= $actualPost['img'] ?>" alt= <?= $actualPost['img'] ?> width="50px"><br />
                         <?php } ?>
+                        <p><em>"<?= $actualPost['title'] ?>"</em></p>
                         <a href="index.php?action=post&amp;id=<?= $actualPost['id'] ?>"><input type="button" value="Reprendre la lecture" class="bttn"></a>
                     </div>
-                <?php } ?>
-                </div>
-                <div class="introduction_navLogo">
+                <?php } else { ?>
                     <div class="firstPost navLogo">
                         <h3>Commencer le roman</h3>
                         <div class="short_line"></div>
@@ -50,6 +49,7 @@ ob_start(); ?>
                         <p><em>"<?= $firstPost['title']; ?>"</em></p>
                         <a href="index.php?action=post&amp;id=<?= $firstPost['id'] ?>"><input type="button" value="Lire le premier chapitre" class="bttn"></a>
                     </div>
+                <?php } ?>
                     <div class="lastPost navLogo">
                         <h3>Dernier chapitre paru</h3>
                         <div class="short_line"></div>

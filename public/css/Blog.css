@@ -284,7 +284,7 @@ h1 {
 }
 
 .introduction_navLogo {
-    padding-top: 20px;
+    padding-top: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -321,6 +321,10 @@ h1 {
 
 /* POST VIEW */
 
+.nav_chapters_smartphone {
+    display: none;
+}
+
 .light_block {
     position: fixed;
     width: 15%;
@@ -356,6 +360,11 @@ h1 {
     text-align: center;
     word-wrap: break-word;
     font-family: "AvantGarde", "Arial", "sans-serif";
+}
+
+.article_img img {
+    width: 400px;
+    margin: auto;
 }
 
 .comment {
@@ -428,7 +437,7 @@ textarea, input{
     background-color: rgba(243, 237, 237, 1);
 }
 
-/* ADMIN SECTION */
+/* ADMIN SECTION VIEW */
 
 .connexion_block {
     margin: auto;
@@ -598,25 +607,204 @@ textarea, input{
 
 /* MEDIA QUERY */
 
-  /* PETIT ECRAN */
-  @media all and (max-width: 1400px) { 
+    /* PETIT ECRAN */
+    @media all and (max-width: 1400px) { 
 
-    /* INTRODUCTION BLOCK */
+        /* WELCOME BLOCK */
 
-    .arrow_next i {
-        top: 60%;
-    }
+        .arrow_next i {
+            top: 60%;
+        }
 
-    .introduction_block {
-        height: 100%;
-    }
+        /* INTRODUCTION BLOCK */
 
-    .introduction_text p {
-        padding: 10px 0 0 12%;
-    }
+        .introduction_block {
+            height: 100%;
+        }
 
-    .intro_text_2 {
-        padding-left: 150px;
-    }
+        .introduction_text p {
+            padding: 10px 0 0 12%;
+        }
+
+        .intro_text_2 {
+            padding-left: 150px;
+        }
+
+        /* POST VIEW */
+
+        .article_img img {
+            width: 300px;
+        }
 
   }
+
+    /* SMARTPHONE */
+    @media all and (max-width: 600px) {
+
+        /* GENERAL */
+
+        .title {
+            padding-top: 40px;
+        }
+
+        /* ERRORS VIEW */
+
+        .error_block {
+            width: 90%;
+            margin: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        /* HEADER */
+        
+        .head_block {
+            padding-top: 0px;
+        }
+
+        .admin_connexion {
+            margin-left: 0%;
+        }
+        
+        .admin_connected {
+            margin-left: 0%;
+        }
+
+        .admin_connected .bttn {
+            margin: 0px;
+        }
+        
+        /* WELCOME BLOCK */
+        
+        .arrow_next i {
+            top: 35%;
+        }
+
+        .welcome_block {
+            max-width: 100%;
+        }
+
+        .welcome_content {
+            text-shadow: 3px 1px 5px black;
+            width: 70%;
+            padding-left: 60px;
+        }
+
+        .novel_title {
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .novel_author {
+            padding-left: 0;
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        /* INTRODUCTION BLOCK */ 
+
+        .introduction_text p {
+            font-size: 1.2em;
+            text-align: center;
+            padding: 0;
+        }
+
+        .intro_text_2 {
+            padding-left: 0px;
+        }
+
+        .introduction_navLogo {
+            padding-top: 0;
+            padding-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .navLogo {
+            margin-top: 10px;
+            width: 70%;
+            height: 300px;
+            text-align: center;
+            color: white;
+            font-family: "Argh", Helvetica, sans-serif;
+            background-color: rgba(243, 237, 237, 0.263);
+            border-radius: 10px;
+        }
+
+        /* POST VIEW */
+
+        .nav_chapters {
+            display: none;
+        }
+
+        .nav_chapters_smartphone {
+            display: block;
+        }
+
+        .on_top { /* NAV_CHAPTERS EN HAUT DE PAGE */
+            padding-top: 25px;
+        }
+
+        .light_block {
+            position: absolute;
+        }
+
+        .lightMode {
+            font-size: 2em;
+        }
+
+        #dark {
+            top: 35%;
+            left: 20%;
+        }
+
+        #bright {
+            top: 35%;
+            left: 20%;
+        }
+
+        .article {
+            width: 100%;
+        }
+
+        .each_post, .comment {
+            font-size: 1em;
+            border-right: none;
+            border-left: none;
+        }
+
+        .article_content {
+            width: 100%;
+        }
+
+        .each_post 
+
+        .each_post .article_img img {
+            width: 200px;
+        }
+
+        /* POSTS LIST VIEW */
+
+        .article img {
+            width: 100px;
+        }
+
+        /* ADMIN SECTION VIEW */
+
+        .connexion_block {
+            width: 80%;
+            height: 180px;
+        }
+
+        /* ADMIN CREATE POST VIEW */
+
+        .createPost input {
+            width: 100%;
+        }
+
+    
+    
+    }

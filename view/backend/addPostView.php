@@ -22,7 +22,7 @@ if ($lastPost) {
   </div>
 
   <div class="createPost">
-      <form action='Index.php?action=newPost&amp;token=<?= $_SESSION['token'] ?>' method="post" enctype="multipart/form-data"> 
+      <form action='index.php?action=newPost&amp;token=<?= $_SESSION['token'] ?>' method="post" enctype="multipart/form-data"> 
           <p><input type="text" placeholder="Titre du chapitre" name="title" maxlength=50 size=150 required></p>
           <p><strong>Numéro de Chapitre : </strong><input type="number" name="chapter" 
           <?php if ($lastPost) { ?>

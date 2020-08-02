@@ -15,7 +15,7 @@ class CommentsCtrlr  {
 
     public function checkComment() {
         if ( !empty($_POST['userName']) && !empty($_POST['comment']) && isset($_POST["g-recaptcha-response"])) {
-            $recaptcha = new \ReCaptcha\ReCaptcha("6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe");
+            $recaptcha = new \ReCaptcha\ReCaptcha("6LesybMZAAAAAJhqPX0kvRDLuYHlXRmCfjynKQJ9");
             $resp = $recaptcha->verify($_POST["g-recaptcha-response"]);
             if ($resp->isSuccess()) {
                 $req = new Comment;
@@ -35,7 +35,7 @@ class CommentsCtrlr  {
             $req = new Comment;
             $req->addReportedComment($commentId);
             $_SESSION['"'.$commentId.'"'] = $commentId;
-            header("Location: index.php?action=post&id=" . $_GET['id'] );
+            header("Location: index.php?action=post&id=" . $_GET['id'] . '#redirCom' );
         }
     }
 
@@ -45,7 +45,7 @@ class CommentsCtrlr  {
             $req = new Comment;
             $req->removeReportedComment($commentId);
             $_SESSION['"'.$commentId.'"'] = null;
-            header("Location: index.php?action=post&id=" . $_GET['id'] );
+            header("Location: index.php?action=post&id=" . $_GET['id'] . '#redirCom' );
         } else { 
             echo '<p>Vous n\'aviez pas signalé ce commentaire.</p>' .      
             ' <a href="index.php?action=post&amp;id='. $_GET["id"] . '">Retour</a>';
@@ -87,11 +87,6 @@ class CommentsCtrlr  {
             } else if ($_GET['from'] === "listComments") {
                 header('Location: index.php?action=listComment&id=' . $_GET['id']);
             }
-            /*
-            echo "<p>Commentaire supprimé.</p> 
-            <a href='index.php?action=administration'>Administration</a> |
-            <a href='index.php?action=reportedComments'>Commentaires signalés</a>";
-            */
         } else {
             header('Location: index.php?action=forbidden');
         }

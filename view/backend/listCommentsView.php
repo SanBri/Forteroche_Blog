@@ -12,8 +12,8 @@ ob_start();
         </div>
 
         <div class="buttons_list">
-            <a href="Index.php?action=post&amp;id=<?= $_GET['id'] ?>"><input type="button" value="Voir l'article" class="bttn"></a>
-            <a href="Index.php?action=administration"><input type="button" value="Retour" class="bttn"></a>
+            <a href="index.php?action=post&amp;id=<?= $_GET['id'] ?>"><input type="button" value="Voir l'article" class="bttn"></a>
+            <a href="index.php?action=administration"><input type="button" value="Retour" class="bttn"></a>
         </div>
 
         <div class="bloc_articles">
@@ -28,7 +28,7 @@ ob_start();
                         <p><?= htmlspecialchars($comment['comment']) ?></p>
                     </div>
                     <div class="comment_icn icnInList">
-                        <a href="Index.php?action=deleteComment&amp;from=listComments&amp;id=<?= $_GET['id'] ?>&amp;comId=<?= $comment['id'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-times deleteCommentIcn" title="Supprimer ce commentaire"></i></a>
+                        <a href="index.php?action=deleteComment&amp;from=listComments&amp;id=<?= $_GET['id'] ?>&amp;comId=<?= $comment['id'] ?>&amp;token=<?= $_SESSION['token'] ?>"><i class="fas fa-times deleteCommentIcn" title="Supprimer ce commentaire"></i></a>
                     </div>
                 </div>
 
